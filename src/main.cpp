@@ -57,16 +57,6 @@ Drive chassis(
     //Gyro Scale
     360,
 
-    /*---------------------------------------------------------------------------*/
-    /*                                  PAUSE! */
-    /*                                                                           */
-    /*  The rest of the drive constructor is for robots using POSITION TRACKING.
-     */
-    /*  If you are not using position tracking, leave the rest of the values as
-     */
-    /*  they are. */
-    /*---------------------------------------------------------------------------*/
-
     // If you are using ZERO_TRACKER_ODOM, you ONLY need to adjust the FORWARD
     // TRACKER CENTER DISTANCE.
 
@@ -112,16 +102,14 @@ int current_auton_selection = 0;
 bool auto_started = false;
 
 void pre_auton(void) {
-  // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   default_constants();
 
   while (
       auto_started ==
-      false) { // Changing the names below will only change their names on the
-    Brain.Screen.clearScreen();        // brain screen for auton selection.
-    switch (current_auton_selection) { // Tap the brain screen to cycle through
-                                       // autons.
+      false) { 
+    Brain.Screen.clearScreen();
+    switch (current_auton_selection) {
     case 0:
       Brain.Screen.printAt(50, 50, "Drive Test");
       break;
@@ -189,16 +177,6 @@ void autonomous(void) {
   }
 }
 
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                              User Control Task                            */
-/*                                                                           */
-/*  This task is used to control your robot during the user control phase of */
-/*  a VEX Competition.                                                       */
-/*                                                                           */
-/*  You must modify the code to add your own robot specific commands here.   */
-/*---------------------------------------------------------------------------*/
-
 void usercontrol(void) {
   bool catapultToggle = false;
   bool toggle = false;
@@ -237,8 +215,7 @@ void usercontrol(void) {
     // Replace this line with chassis.control_tank(); for tank drive
     chassis.control_arcade();
 
-    wait(20, msec); // Sleep the task for a short amount of time to
-                    // prevent wasted resources.
+    wait(20, msec);
   }
 }
 
