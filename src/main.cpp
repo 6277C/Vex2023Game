@@ -18,7 +18,6 @@
 
 using namespace vex;
 competition Competition;
-
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
 /*                                                                           */
@@ -240,12 +239,12 @@ void usercontrol(void)
 
     if (Controller1.ButtonX.pressing())
     {
-      intake.spin(forward);
+      intake.spin(forward, 100, percent);
     }
     else if (Controller1.ButtonY.pressing())
     {
 
-      intake.spin(reverse);
+      intake.spin(reverse, 100, percent);
     }
     else
     {
