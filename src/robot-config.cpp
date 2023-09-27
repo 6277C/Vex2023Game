@@ -19,6 +19,7 @@ digital_out DigitalOutA = digital_out(Brain.ThreeWirePort.A);
 controller Controller1 = controller(primary);
 motor catapult = motor(PORT8, ratio36_1, false);
 rotation catapultRot = rotation(PORT2, false);
+motor intake = motor(PORT17, ratio6_1, false);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

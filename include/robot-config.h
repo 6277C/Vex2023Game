@@ -10,6 +10,7 @@ extern motor BR;
 extern motor FL;
 extern motor ML;
 extern motor BL;
+extern motor intake;
 extern digital_out DigitalOutA;
 extern controller Controller1;
 extern motor catapult;
