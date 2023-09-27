@@ -192,28 +192,35 @@ void usercontrol(void)
   bool latch = false;
   bool toggle1 = false;
   bool latch1 = false;
+  bool catapultPrime = false;
   while (1)
   {
-    // Code for catapult
-    if (Controller1.ButtonR2.pressing())
-    {
-      catapult.spin(forward);
-      wait(500, msec);
-      catapultToggle = false;
+
+    if(Controller1.ButtonUp.pressing()){
+catapultPrime = true;
     }
-    else
+    // Code for catapult
+    if (catapultPrime == true)
     {
-      if (catapultRot.position(degrees) < 57 && catapultToggle == false)
+      if (Controller1.ButtonR2.pressing())
       {
         catapult.spin(forward);
+        wait(500, msec);
+        catapultToggle = false;
       }
       else
       {
-        catapult.stop(coast);
-        catapultToggle = true;
+        if (catapultRot.position(degrees) < 57 && catapultToggle == false)
+        {
+          catapult.spin(forward);
+        }
+        else
+        {
+          catapult.stop(coast);
+          catapultToggle = true;
+        }
       }
     }
-
     // Code for blocker
     if (toggle)
     {
@@ -237,7 +244,7 @@ void usercontrol(void)
       latch = false;
     }
 
-//Side Blocker
+    // Side Blocker
     if (toggle1)
     {
       DigitalOutB = false;
