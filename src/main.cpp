@@ -18,23 +18,6 @@
 
 using namespace vex;
 competition Competition;
-/*---------------------------------------------------------------------------*/
-/*                             VEXcode Config                                */
-/*                                                                           */
-/*  Before you do anything else, start by configuring your motors and        */
-/*  sensors using the V5 port icon in the top right of the screen. Doing     */
-/*  so will update robot-config.cpp and robot-config.h automatically, so     */
-/*  you don't have to. Ensure that your motors are reversed properly. For    */
-/*  the drive, spinning all motors forward should drive the robot forward.   */
-/*---------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------*/
-/*                             JAR-Template Config                           */
-/*                                                                           */
-/*  Where all the magic happens. Follow the instructions below to input      */
-/*  all the physical constants and values for your robot. You should         */
-/*  already have configured your robot manually with the sidebar configurer. */
-/*---------------------------------------------------------------------------*/
 
 Drive chassis(
     ZERO_TRACKER_ODOM,
@@ -59,9 +42,7 @@ Drive chassis(
     // If you are using ZERO_TRACKER_ODOM, you ONLY need to adjust the FORWARD
     // TRACKER CENTER DISTANCE.
 
-    // FOR HOLONOMIC DRIVES ONLY: Input your drive motors by position. This is
-    // only necessary for holonomic drives, otherwise this section can be left
-    // alone. LF:      //RF:
+    // LF:      //RF:
     PORT1, -PORT2,
 
     // LB:      //RB:
@@ -78,9 +59,7 @@ Drive chassis(
     // switch):
     2.75,
 
-    // Input Forward Tracker center distance (a positive distance corresponds to
-    // a tracker on the right side of the robot, negative is left.) For a zero
-    // tracker tank drive with odom, put the positive distance from the center
+    // the positive distance from the center
     // of the robot to the right side of the drive. This distance is in inches:
     5,
 
@@ -97,8 +76,15 @@ Drive chassis(
 
 );
 
+// Variables
 int current_auton_selection = 0;
 bool auto_started = false;
+bool catapultToggle = false;
+bool toggle = false;
+bool latch = false;
+bool toggle1 = false;
+bool latch1 = false;
+bool catapultPrime = false;
 
 void pre_auton(void)
 {
@@ -187,17 +173,13 @@ void autonomous(void)
 
 void usercontrol(void)
 {
-  bool catapultToggle = false;
-  bool toggle = false;
-  bool latch = false;
-  bool toggle1 = false;
-  bool latch1 = false;
-  bool catapultPrime = false;
+
   while (1)
   {
-
-    if(Controller1.ButtonUp.pressing()){
-catapultPrime = true;
+    // Catapult Prime
+    if (Controller1.ButtonUp.pressing())
+    {
+      catapultPrime = true;
     }
     // Code for catapult
     if (catapultPrime == true)
@@ -221,7 +203,7 @@ catapultPrime = true;
         }
       }
     }
-    // Code for blocker
+    // Code for back blocker
     if (toggle)
     {
       DigitalOutA = false;
@@ -244,7 +226,7 @@ catapultPrime = true;
       latch = false;
     }
 
-    // Side Blocker
+    // Code for Side Blocker
     if (toggle1)
     {
       DigitalOutB = false;
