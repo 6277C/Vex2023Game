@@ -190,6 +190,8 @@ void usercontrol(void)
   bool catapultToggle = false;
   bool toggle = false;
   bool latch = false;
+  bool toggle1 = false;
+  bool latch1 = false;
   while (1)
   {
     // Code for catapult
@@ -233,6 +235,29 @@ void usercontrol(void)
     else
     {
       latch = false;
+    }
+
+//Side Blocker
+    if (toggle1)
+    {
+      DigitalOutB = false;
+    }
+    else
+    {
+      DigitalOutB = true;
+    }
+
+    if (Controller1.ButtonL1.pressing())
+    {
+      if (!latch1)
+      {
+        toggle1 = !toggle1;
+        latch1 = true;
+      }
+    }
+    else
+    {
+      latch1 = false;
     }
 
     // Intake Code
