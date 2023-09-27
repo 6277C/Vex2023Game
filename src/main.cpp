@@ -3,22 +3,21 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// Inertial10           inertial      10              
-// FR                   motor         11              
-// MR                   motor         12              
-// BR                   motor         13              
-// FL                   motor         20              
-// ML                   motor         19              
-// BL                   motor         18              
-// DigitalOutA          digital_out   A               
-// Controller1          controller                    
-// catapult             motor         8               
-// catapultRot          rotation      2               
+// Inertial10           inertial      10
+// FR                   motor         11
+// MR                   motor         12
+// BR                   motor         13
+// FL                   motor         20
+// ML                   motor         19
+// BL                   motor         18
+// DigitalOutA          digital_out   A
+// Controller1          controller
+// catapult             motor         8
+// catapultRot          rotation      2
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 using namespace vex;
 competition Competition;
-
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
 /*                                                                           */
@@ -54,7 +53,7 @@ Drive chassis(
     // Drive Ratio
     0.6,
 
-    //Gyro Scale
+    // Gyro Scale
     360,
 
     // If you are using ZERO_TRACKER_ODOM, you ONLY need to adjust the FORWARD
@@ -101,15 +100,18 @@ Drive chassis(
 int current_auton_selection = 0;
 bool auto_started = false;
 
-void pre_auton(void) {
+void pre_auton(void)
+{
   vexcodeInit();
   default_constants();
 
   while (
       auto_started ==
-      false) { 
+      false)
+  {
     Brain.Screen.clearScreen();
-    switch (current_auton_selection) {
+    switch (current_auton_selection)
+    {
     case 0:
       Brain.Screen.printAt(50, 50, "Drive Test");
       break;
@@ -135,23 +137,29 @@ void pre_auton(void) {
       Brain.Screen.printAt(50, 50, "Holonomic Odom Test");
       break;
     }
-    if (Brain.Screen.pressing()) {
-      while (Brain.Screen.pressing()) {
+    if (Brain.Screen.pressing())
+    {
+      while (Brain.Screen.pressing())
+      {
       }
       current_auton_selection++;
-    } else if (current_auton_selection == 8) {
+    }
+    else if (current_auton_selection == 8)
+    {
       current_auton_selection = 0;
     }
     task::sleep(10);
   }
 }
 
-void autonomous(void) {
+void autonomous(void)
+{
 
   auto_started = true;
-  switch (current_auton_selection) {
+  switch (current_auton_selection)
+  {
   case 0:
-    odom_test(); 
+    odom_test();
     break;
   case 1:
     drive_test();
@@ -177,41 +185,103 @@ void autonomous(void) {
   }
 }
 
-void usercontrol(void) {
+void usercontrol(void)
+{
   bool catapultToggle = false;
   bool toggle = false;
   bool latch = false;
-  while (1) {
-    // Code for catapult 
-    if (Controller1.ButtonR2.pressing()) {
-      catapult.spin(forward);
-      wait(500, msec);
-      catapultToggle = false;
-    } else {
-      if (catapultRot.position(degrees) < 57 && catapultToggle == false) {
+  bool toggle1 = false;
+  bool latch1 = false;
+  bool catapultPrime = false;
+  while (1)
+  {
+
+    if(Controller1.ButtonUp.pressing()){
+catapultPrime = true;
+    }
+    // Code for catapult
+    if (catapultPrime == true)
+    {
+      if (Controller1.ButtonR2.pressing())
+      {
         catapult.spin(forward);
-      } else {
-        catapult.stop(coast);
-        catapultToggle = true;
+        wait(500, msec);
+        catapultToggle = false;
+      }
+      else
+      {
+        if (catapultRot.position(degrees) < 57 && catapultToggle == false)
+        {
+          catapult.spin(forward);
+        }
+        else
+        {
+          catapult.stop(coast);
+          catapultToggle = true;
+        }
       }
     }
-
     // Code for blocker
-    if (toggle) {
+    if (toggle)
+    {
       DigitalOutA = false;
-    } else {
+    }
+    else
+    {
       DigitalOutA = true;
     }
 
-    if (Controller1.ButtonL2.pressing()) {
-      if (!latch) {
+    if (Controller1.ButtonL2.pressing())
+    {
+      if (!latch)
+      {
         toggle = !toggle;
         latch = true;
       }
-    } else {
+    }
+    else
+    {
       latch = false;
     }
 
+    // Side Blocker
+    if (toggle1)
+    {
+      DigitalOutB = false;
+    }
+    else
+    {
+      DigitalOutB = true;
+    }
+
+    if (Controller1.ButtonL1.pressing())
+    {
+      if (!latch1)
+      {
+        toggle1 = !toggle1;
+        latch1 = true;
+      }
+    }
+    else
+    {
+      latch1 = false;
+    }
+
+    // Intake Code
+
+    if (Controller1.ButtonX.pressing())
+    {
+      intake.spin(forward, 100, percent);
+    }
+    else if (Controller1.ButtonY.pressing())
+    {
+
+      intake.spin(reverse, 100, percent);
+    }
+    else
+    {
+      intake.stop(coast);
+    }
     // Replace this line with chassis.control_tank(); for tank drive
     chassis.control_arcade();
 
@@ -222,7 +292,8 @@ void usercontrol(void) {
 //
 // Main will set up the competition functions and callbacks.
 //
-int main() {
+int main()
+{
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
@@ -231,7 +302,8 @@ int main() {
   pre_auton();
 
   // Prevent main from exiting with an infinite loop.
-  while (true) {
+  while (true)
+  {
     wait(100, msec);
   }
 }
