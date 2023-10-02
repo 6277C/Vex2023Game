@@ -85,7 +85,8 @@ bool latch = false;
 bool toggle1 = false;
 bool latch1 = false;
 bool catapultPrime = false;
-
+bool toggle2 = false;
+bool latch2 = false;
 void pre_auton(void)
 {
   vexcodeInit();
@@ -251,18 +252,26 @@ void usercontrol(void)
 
     // Intake Code
 
-    if (Controller1.ButtonX.pressing())
+   if (toggle2)
     {
-      intake.spin(forward, 100, percent);
-    }
-    else if (Controller1.ButtonR1.pressing())
-    {
-
       intake.spin(reverse, 100, percent);
     }
     else
     {
       intake.stop(coast);
+    }
+
+    if (Controller1.ButtonR1.pressing())
+    {
+      if (!latch2)
+      {
+        toggle2 = !toggle2;
+        latch2 = true;
+      }
+    }
+    else
+    {
+      latch2 = false;
     }
     // Replace this line with chassis.control_tank(); for tank drive
     chassis.control_arcade();
