@@ -277,11 +277,11 @@ void usercontrol(void)
     if (Controller1.ButtonB.pressing())
     {
 
-      ratchet = true;
+      ratchet = false;
     }
     else
     {
-      ratchet = false;
+      ratchet = true;
     }
     // Replace this line with chassis.control_tank(); for tank drive
     chassis.control_tank();
