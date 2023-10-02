@@ -17,6 +17,7 @@ motor ML = motor(PORT19, ratio6_1, true);
 motor BL = motor(PORT18, ratio6_1, true);
 digital_out DigitalOutA = digital_out(Brain.ThreeWirePort.A);
 digital_out DigitalOutB = digital_out(Brain.ThreeWirePort.B);
+digital_out ratchet = digital_out(Brain.ThreeWirePort.C);
 controller Controller1 = controller(primary);
 motor catapult = motor(PORT8, ratio36_1, false);
 rotation catapultRot = rotation(PORT2, false);

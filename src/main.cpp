@@ -252,7 +252,7 @@ void usercontrol(void)
 
     // Intake Code
 
-   if (toggle2)
+    if (toggle2)
     {
       intake.spin(reverse, 100, percent);
     }
@@ -273,8 +273,18 @@ void usercontrol(void)
     {
       latch2 = false;
     }
+    // ratchet
+    if (Controller1.ButtonB.pressing())
+    {
+
+      ratchet = true;
+    }
+    else
+    {
+      ratchet = false;
+    }
     // Replace this line with chassis.control_tank(); for tank drive
-    chassis.control_arcade();
+    chassis.control_tank();
 
     wait(20, msec);
   }
