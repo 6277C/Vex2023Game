@@ -255,7 +255,7 @@ void usercontrol(void)
     {
       intake.spin(forward, 100, percent);
     }
-    else if (Controller1.ButtonY.pressing())
+    else if (Controller1.ButtonR1.pressing())
     {
 
       intake.spin(reverse, 100, percent);
