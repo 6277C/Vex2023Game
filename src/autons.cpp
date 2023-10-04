@@ -1,5 +1,18 @@
 #include "vex.h"
 
+void rightAuto(){
+DigitalOutB = true;
+chassis.drive_distance(6);
+chassis.right_swing_to_angle(20);
+
+}
+
+void leftAuto(){
+DigitalOutB = true;
+chassis.drive_distance(6);
+chassis.left_swing_to_angle(20);
+
+}
 void default_constants() {
   chassis.set_drive_constants(10, 1.5, 0, 10, 0);
   chassis.set_heading_constants(6, .4, 0, 1, 0);
