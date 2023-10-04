@@ -80,13 +80,13 @@ Drive chassis(
 int current_auton_selection = 0;
 bool auto_started = false;
 bool catapultToggle = false;
-bool toggle = false;
-bool latch = false;
-bool toggle1 = false;
-bool latch1 = false;
+bool toggle = true;
+bool latch = true;
+bool toggle1 = true;
+bool latch1 = true;
 bool catapultPrime = false;
-bool toggle2 = false;
-bool latch2 = false;
+bool toggle2 = true;
+bool latch2 = true;
 void pre_auton(void)
 {
   vexcodeInit();
