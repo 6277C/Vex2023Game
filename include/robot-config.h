@@ -13,6 +13,7 @@ extern motor BL;
 extern motor intake;
 extern digital_out DigitalOutA;
 extern digital_out DigitalOutB;
+extern digital_out ratchet;
 extern controller Controller1;
 extern motor catapult;
 extern rotation catapultRot;
