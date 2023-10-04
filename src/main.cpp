@@ -87,6 +87,8 @@ bool latch1 = false;
 bool catapultPrime = false;
 bool toggle2 = false;
 bool latch2 = false;
+
+
 void pre_auton(void)
 {
   vexcodeInit();
@@ -100,28 +102,19 @@ void pre_auton(void)
     switch (current_auton_selection)
     {
     case 0:
-      Brain.Screen.printAt(50, 50, "Drive Test");
+      Brain.Screen.printAt(50, 50, "Right Auto");
       break;
     case 1:
-      Brain.Screen.printAt(50, 50, "Drive Test");
+      Brain.Screen.printAt(50, 50, "Left Auto");
       break;
     case 2:
-      Brain.Screen.printAt(50, 50, "Turn Test");
+      Brain.Screen.printAt(50, 50, "Drive Test");
       break;
     case 3:
-      Brain.Screen.printAt(50, 50, "Swing Test");
+      Brain.Screen.printAt(50, 50, "Turn Test");
       break;
     case 4:
-      Brain.Screen.printAt(50, 50, "Full Test");
-      break;
-    case 5:
-      Brain.Screen.printAt(50, 50, "Odom Test");
-      break;
-    case 6:
-      Brain.Screen.printAt(50, 50, "Tank Odom Test");
-      break;
-    case 7:
-      Brain.Screen.printAt(50, 50, "Holonomic Odom Test");
+      Brain.Screen.printAt(50, 50, "Swing Test");
       break;
     }
     if (Brain.Screen.pressing())
@@ -131,7 +124,7 @@ void pre_auton(void)
       }
       current_auton_selection++;
     }
-    else if (current_auton_selection == 8)
+    else if (current_auton_selection == 5)
     {
       current_auton_selection = 0;
     }
@@ -146,28 +139,19 @@ void autonomous(void)
   switch (current_auton_selection)
   {
   case 0:
-    odom_test();
+    rightAuto();
     break;
   case 1:
-    drive_test();
+    leftAuto();
     break;
   case 2:
-    turn_test();
+    drive_test();
     break;
   case 3:
-    swing_test();
+    turn_test();
     break;
   case 4:
-    full_test();
-    break;
-  case 5:
-    odom_test();
-    break;
-  case 6:
-    tank_odom_test();
-    break;
-  case 7:
-    holonomic_odom_test();
+    swing_test();
     break;
   }
 }
@@ -207,11 +191,11 @@ void usercontrol(void)
     // Code for back blocker
     if (toggle)
     {
-      DigitalOutA = false;
+      DigitalOutA = true;
     }
     else
     {
-      DigitalOutA = true;
+      DigitalOutA = false;
     }
 
     if (Controller1.ButtonL2.pressing())
@@ -230,11 +214,11 @@ void usercontrol(void)
     // Code for Side Blocker
     if (toggle1)
     {
-      DigitalOutB = false;
+      DigitalOutB = true;
     }
     else
     {
-      DigitalOutB = true;
+      DigitalOutB = false;
     }
 
     if (Controller1.ButtonL1.pressing())
@@ -252,7 +236,7 @@ void usercontrol(void)
 
     // Intake Code
 
-   if (toggle2)
+    if (toggle2)
     {
       intake.spin(reverse, 100, percent);
     }
@@ -273,8 +257,18 @@ void usercontrol(void)
     {
       latch2 = false;
     }
+    // ratchet
+    if (Controller1.ButtonB.pressing())
+    {
+
+      ratchet = true;
+    }
+    else
+    {
+      ratchet = false;
+    }
     // Replace this line with chassis.control_tank(); for tank drive
-    chassis.control_arcade();
+    chassis.control_tank();
 
     wait(20, msec);
   }
