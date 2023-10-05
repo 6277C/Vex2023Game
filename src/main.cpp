@@ -28,7 +28,7 @@ Drive chassis(
     motor_group(FR, MR, BR),
 
     // Inertial Sensor
-    PORT10,
+    PORT16,
 
     // Input your wheel diameter. (4" omnis are actually closer to 4.125"):
     3.25,
@@ -87,6 +87,7 @@ bool latch1 = false;
 bool catapultPrime = false;
 bool toggle2 = false;
 bool latch2 = false;
+
 void pre_auton(void)
 {
   vexcodeInit();
@@ -132,7 +133,6 @@ void pre_auton(void)
 
 void autonomous(void)
 {
-
   auto_started = true;
   switch (current_auton_selection)
   {
@@ -156,7 +156,6 @@ void autonomous(void)
 
 void usercontrol(void)
 {
-
   while (1)
   {
     // Catapult Prime
@@ -189,11 +188,11 @@ void usercontrol(void)
     // Code for back blocker
     if (toggle)
     {
-      DigitalOutA = true;
+      backBlocker = true;
     }
     else
     {
-      DigitalOutA = false;
+      backBlocker = false;
     }
 
     if (Controller1.ButtonL2.pressing())
@@ -212,11 +211,13 @@ void usercontrol(void)
     // Code for Side Blocker
     if (toggle1)
     {
-      DigitalOutB = true;
+      leftBlocker = true;
+      rightBlocker = true;
     }
     else
     {
-      DigitalOutB = false;
+      rightBlocker = false;
+      leftBlocker = false;
     }
 
     if (Controller1.ButtonL1.pressing())
@@ -255,7 +256,7 @@ void usercontrol(void)
     {
       latch2 = false;
     }
-    // ratchet
+    // Ratchet
     if (Controller1.ButtonB.pressing())
     {
 
@@ -265,7 +266,6 @@ void usercontrol(void)
     {
       ratchet = false;
     }
-    // Replace this line with chassis.control_tank(); for tank drive
     chassis.control_tank();
 
     wait(20, msec);

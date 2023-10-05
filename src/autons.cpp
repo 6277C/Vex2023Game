@@ -1,14 +1,17 @@
 #include "vex.h"
 
 void rightAuto(){
-DigitalOutB = true;
+rightBlocker = true;
+leftBlocker = true;
+wait(.5,sec);
 chassis.drive_distance(6);
 chassis.right_swing_to_angle(20);
 
 }
 
 void leftAuto(){
-DigitalOutB = true;
+leftBlocker = true;
+rightBlocker = true;
 chassis.drive_distance(6);
 chassis.left_swing_to_angle(20);
 
