@@ -1,19 +1,24 @@
 #include "vex.h"
 
-void rightAuto(){
+void rightAutoNoTouch(){
 rightBlocker = true;
-leftBlocker = true;
-wait(.5,sec);
-chassis.drive_distance(6);
-chassis.right_swing_to_angle(20);
+//drive forward
+//turn left
+//drive forward to goal
+//backup
+}
+
+void leftAutoNoTouch(){
 
 }
 
-void leftAuto(){
-leftBlocker = true;
-rightBlocker = true;
-chassis.drive_distance(6);
-chassis.left_swing_to_angle(20);
+void rightAutoTouch(){
+
+
+}
+
+void leftAutoTouch(){
+
 
 }
 void default_constants() {

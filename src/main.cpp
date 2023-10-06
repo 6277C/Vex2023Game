@@ -101,19 +101,16 @@ void pre_auton(void)
     switch (current_auton_selection)
     {
     case 0:
-      Brain.Screen.printAt(50, 50, "Right Auto");
+      Brain.Screen.printAt(50, 50, "Right Auto No Bar");
       break;
     case 1:
-      Brain.Screen.printAt(50, 50, "Left Auto");
+      Brain.Screen.printAt(50, 50, "Left Auto No Bar");
       break;
     case 2:
-      Brain.Screen.printAt(50, 50, "Drive Test");
+      Brain.Screen.printAt(50, 50, "Right Auto With Touch");
       break;
     case 3:
-      Brain.Screen.printAt(50, 50, "Turn Test");
-      break;
-    case 4:
-      Brain.Screen.printAt(50, 50, "Swing Test");
+      Brain.Screen.printAt(50, 50, "Left Auto With Touch");
       break;
     }
     if (Brain.Screen.pressing())
@@ -123,7 +120,7 @@ void pre_auton(void)
       }
       current_auton_selection++;
     }
-    else if (current_auton_selection == 5)
+    else if (current_auton_selection == 4)
     {
       current_auton_selection = 0;
     }
@@ -137,19 +134,16 @@ void autonomous(void)
   switch (current_auton_selection)
   {
   case 0:
-    rightAuto();
+    rightAutoNoTouch();
     break;
   case 1:
-    leftAuto();
+    leftAutoNoTouch();
     break;
   case 2:
-    drive_test();
+    rightAutoTouch();
     break;
   case 3:
-    turn_test();
-    break;
-  case 4:
-    swing_test();
+    leftAutoTouch();
     break;
   }
 }
