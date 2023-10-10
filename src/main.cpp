@@ -260,7 +260,7 @@ void usercontrol(void)
     {
       ratchet = false;
     }
-    chassis.control_tank();
+    chassis.control_arcade();
 
     wait(20, msec);
   }
