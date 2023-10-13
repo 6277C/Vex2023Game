@@ -18,6 +18,7 @@ motor BL = motor(PORT18, ratio6_1, true);
 digital_out backBlocker = digital_out(Brain.ThreeWirePort.A);
 digital_out rightBlocker = digital_out(Brain.ThreeWirePort.B);
 digital_out ratchet = digital_out(Brain.ThreeWirePort.C);
+digital_out hang = digital_out(Brain.ThreeWirePort.E);
 digital_out leftBlocker = digital_out(Brain.ThreeWirePort.D);
 controller Controller1 = controller(primary);
 motor catapult = motor(PORT8, ratio36_1, false);

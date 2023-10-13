@@ -87,6 +87,8 @@ bool latch1 = false;
 bool catapultPrime = false;
 bool toggle2 = false;
 bool latch2 = false;
+bool toggle3 = false;
+bool latch3 = false;
 
 void pre_auton(void)
 {
@@ -160,7 +162,7 @@ void usercontrol(void)
     // Code for catapult
     if (catapultPrime == true)
     {
-      if (Controller1.ButtonR2.pressing())
+      if (Controller1.ButtonL1.pressing())
       {
         catapult.spin(forward);
         wait(500, msec);
@@ -189,7 +191,7 @@ void usercontrol(void)
       backBlocker = false;
     }
 
-    if (Controller1.ButtonL2.pressing())
+    if (Controller1.ButtonX.pressing())
     {
       if (!latch)
       {
@@ -214,7 +216,7 @@ void usercontrol(void)
       leftBlocker = false;
     }
 
-    if (Controller1.ButtonL1.pressing())
+    if (Controller1.ButtonL2.pressing())
     {
       if (!latch1)
       {
@@ -250,8 +252,13 @@ void usercontrol(void)
     {
       latch2 = false;
     }
+
+    if (Controller1.ButtonR2.pressing())
+    {
+      intake.spin(forward, 100, percent);
+    }
     // Ratchet
-    if (Controller1.ButtonB.pressing())
+    if (Controller1.ButtonLeft.pressing())
     {
 
       ratchet = true;
@@ -260,7 +267,29 @@ void usercontrol(void)
     {
       ratchet = false;
     }
-    chassis.control_arcade();
+//hang
+    if (toggle3)
+    {
+      hang = true;
+    }
+    else
+    {
+      hang = false;
+    }
+
+    if (Controller1.ButtonB.pressing())
+    {
+      if (!latch3)
+      {
+        toggle3 = !toggle3;
+        latch3 = true;
+      }
+    }
+    else
+    {
+      latch3 = false;
+    }
+    chassis.control_tank();
 
     wait(20, msec);
   }

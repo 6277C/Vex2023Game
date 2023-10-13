@@ -18,6 +18,7 @@ extern digital_out ratchet;
 extern controller Controller1;
 extern motor catapult;
 extern rotation catapultRot;
+extern digital_out hang;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
