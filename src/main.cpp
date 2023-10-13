@@ -267,7 +267,7 @@ void usercontrol(void)
     {
       ratchet = false;
     }
-//hang
+    // hang
     if (toggle3)
     {
       hang = true;
