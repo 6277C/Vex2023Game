@@ -2,14 +2,19 @@
 
 void rightAutoNoTouch(){
 rightBlocker = true;
-//drive forward
-//turn left
-//drive forward to goal
-//backup
+chassis.drive_distance(7.5);
+chassis.turn_to_angle(-40);
+chassis.turn_to_angle(-25);
+rightBlocker = false;
+chassis.drive_distance(30);
+chassis.drive_distance(-15);
 }
 
 void leftAutoNoTouch(){
-
+leftBlocker = true;
+chassis.drive_distance(7.5);
+chassis.turn_to_angle(40);
+leftBlocker = false;
 }
 
 void rightAutoTouch(){
