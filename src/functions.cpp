@@ -1,30 +1,17 @@
 #include "vex.h"
 
-void intakeVoid()
+void plowVoid(bool trans)
 {
-    intake.spin(reverse, 100, percent);
-}
-
-void revIntakeVoid()
-{
-    intake.spin(forward, 100, percent);
-}
-
-void intakeStop()
-{
-    intake.stop(coast);
-}
-
-void plowOutVoid()
-{
-    leftBlocker = true;
-    rightBlocker = true;
-}
-
-void plowInVoid()
-{
-    leftBlocker = false;
-    rightBlocker = false;
+    if (trans == true)
+    {
+        leftBlocker = true;
+        rightBlocker = true;
+    }
+    else
+    {
+        leftBlocker = false;
+        rightBlocker = false;
+    }
 }
 
 void catapultVoid()
