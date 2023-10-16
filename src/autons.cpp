@@ -24,6 +24,9 @@ leftBlocker = false;
 
 void rightAutoTouch(){
 rightBlocker = true;
+intake.spin(reverse, 100, percent);
+wait(.5, sec);
+intake.stop(brake);
 chassis.drive_distance(7.5);
 chassis.turn_to_angle(-40);
 chassis.turn_to_angle(-25);
