@@ -1,7 +1,12 @@
 #include "vex.h"
+#include "functions.h"
+
 
 void rightAutoNoTouch(){
 rightBlocker = true;
+intake.spin(reverse, 100, percent);
+wait(.5, sec);
+intake.stop(brake);
 chassis.drive_distance(7.5);
 chassis.turn_to_angle(-40);
 chassis.turn_to_angle(-25);
@@ -18,12 +23,21 @@ leftBlocker = false;
 }
 
 void rightAutoTouch(){
-
+rightBlocker = true;
+chassis.drive_distance(7.5);
+chassis.turn_to_angle(-40);
+chassis.turn_to_angle(-25);
+rightBlocker = false;
+chassis.drive_distance(30);
+chassis.drive_distance(-15);
 
 }
 
 void leftAutoTouch(){
-
+leftBlocker = true;
+chassis.drive_distance(7.5);
+chassis.turn_to_angle(40);
+leftBlocker = false;
 
 }
 void default_constants() {
