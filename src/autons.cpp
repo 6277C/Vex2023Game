@@ -1,5 +1,4 @@
 #include "vex.h"
-#include "functions.h"
 
 
 void rightAutoNoTouch(){
