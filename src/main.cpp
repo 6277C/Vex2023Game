@@ -152,6 +152,14 @@ void autonomous(void)
 
 void usercontrol(void)
 {
+
+  FR.setStopping(coast);
+  MR.setStopping(coast);
+  BR.setStopping(coast);
+  FL.setStopping(coast);
+  ML.setStopping(coast);
+  BL.setStopping(coast);
+
   while (1)
   {
     // Catapult Prime

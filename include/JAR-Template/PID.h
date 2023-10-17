@@ -11,7 +11,7 @@ public:
   float starti = 0;
   float settle_error = 0;
   float settle_time = 0;
-  float timeout = 0;
+  float timeout = 10;
   float accumulated_error = 0;
   float previous_error = 0;
   float output = 0;

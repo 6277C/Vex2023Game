@@ -1,52 +1,65 @@
 #include "vex.h"
 
-
-void rightAutoNoTouch(){
-rightBlocker = true;
-intake.spin(reverse, 100, percent);
-wait(.5, sec);
-intake.stop(brake);
-chassis.drive_distance(7.5);
-chassis.turn_to_angle(-40);
-chassis.turn_to_angle(-25);
-rightBlocker = false;
-chassis.drive_distance(30);
-chassis.drive_distance(-15);
+void rightAutoNoTouch()
+{
+  chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  rightBlocker = true;
+  intake.spin(reverse, 100, percent);
+  wait(.5, sec);
+  intake.stop(brake);
+  chassis.drive_distance(7.5);
+  chassis.turn_to_angle(-40);
+  chassis.turn_to_angle(-25);
+  rightBlocker = false;
+  chassis.drive_distance(30);
+  chassis.drive_distance(-15);
 }
 
-void leftAutoNoTouch(){
-leftBlocker = true;
-chassis.drive_distance(7.5);
-chassis.turn_to_angle(40);
-leftBlocker = false;
+void leftAutoNoTouch()
+{
+  chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  leftBlocker = true;
+  chassis.drive_distance(7.5);
+  chassis.turn_to_angle(40);
+  leftBlocker = false;
 }
 
-void rightAutoTouch(){
-chassis.left_swing_to_angle(10);
-chassis.left_swing_to_angle(90);
-chassis.left_swing_to_angle(180);
-chassis.left_swing_to_angle(270);
-chassis.left_swing_to_angle(0);
-
+void rightAutoTouch()
+{
+  chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  rightBlocker = true;
+  intake.spin(reverse, 100, percent);
+  wait(.5, sec);
+  intake.stop(brake);
+  chassis.drive_distance(7.5);
+  chassis.turn_to_angle(-40);
+  chassis.turn_to_angle(-25);
+  rightBlocker = false;
+  chassis.drive_distance(30);
+  chassis.drive_distance(-15);
 }
 
-void leftAutoTouch(){
-intake.spin(reverse, 100, percent);
-wait(0.5, sec);
-intake.stop(brake);
-chassis.drive_distance(13);
-chassis.left_swing_to_angle(45);
-chassis.drive_distance(20);
-chassis.drive_distance(-15);
-chassis.turn_to_angle(180);
-rightBlocker = true;
-chassis.drive_distance(12);
-chassis.left_swing_to_angle(145);
-rightBlocker = false;
-chassis.drive_distance(42);
-
+void leftAutoTouch()
+{
+  chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  chassis.set_swing_exit_conditions(1, 300, 1000);
+  intake.spin(reverse, 100, percent);
+  wait(0.5, sec);
+  intake.stop(brake);
+  chassis.drive_distance(13);
+  chassis.left_swing_to_angle(45);
+  chassis.drive_distance(20);
+  chassis.drive_distance(-15);
+  chassis.turn_to_angle(180);
+  rightBlocker = true;
+  chassis.drive_distance(12);
+  chassis.left_swing_to_angle(145);
+  rightBlocker = false;
+  chassis.drive_distance(42);
 }
-void default_constants() {
+void default_constants()
+{
   chassis.set_drive_constants(10, 1.5, 0, 10, 0);
   chassis.set_heading_constants(6, .4, 0, 1, 0);
   chassis.set_turn_constants(12, .4, .03, 3, 15);
@@ -56,20 +69,23 @@ void default_constants() {
   chassis.set_swing_exit_conditions(1, 300, 3000);
 }
 
-void odom_constants() {
+void odom_constants()
+{
   default_constants();
   chassis.drive_max_voltage = 8;
   chassis.drive_settle_error = 3;
 }
 
-void drive_test() {
+void drive_test()
+{
   chassis.drive_distance(6);
   chassis.drive_distance(12);
   chassis.drive_distance(18);
   chassis.drive_distance(-36);
 }
 
-void turn_test() {
+void turn_test()
+{
   chassis.turn_to_angle(5);
   chassis.turn_to_angle(30);
   chassis.turn_to_angle(90);
@@ -77,12 +93,14 @@ void turn_test() {
   chassis.turn_to_angle(0);
 }
 
-void swing_test() {
+void swing_test()
+{
   chassis.left_swing_to_angle(90);
   chassis.right_swing_to_angle(0);
 }
 
-void full_test() {
+void full_test()
+{
   chassis.drive_distance(24);
   chassis.turn_to_angle(-45);
   chassis.drive_distance(-36);
@@ -91,9 +109,11 @@ void full_test() {
   chassis.turn_to_angle(0);
 }
 
-void odom_test() {
+void odom_test()
+{
   chassis.set_coordinates(0, 0, 0);
-  while (1) {
+  while (1)
+  {
     Brain.Screen.clearScreen();
     Brain.Screen.printAt(0, 50, "X: %f", chassis.get_X_position());
     Brain.Screen.printAt(0, 70, "Y: %f", chassis.get_Y_position());
@@ -106,7 +126,8 @@ void odom_test() {
   }
 }
 
-void tank_odom_test() {
+void tank_odom_test()
+{
   odom_constants();
   chassis.set_coordinates(0, 0, 0);
   chassis.turn_to_point(24, 24);
@@ -115,7 +136,8 @@ void tank_odom_test() {
   chassis.turn_to_angle(0);
 }
 
-void holonomic_odom_test() {
+void holonomic_odom_test()
+{
   odom_constants();
   chassis.set_coordinates(0, 0, 0);
   chassis.holonomic_drive_to_point(0, 18, 90);
@@ -123,4 +145,3 @@ void holonomic_odom_test() {
   chassis.holonomic_drive_to_point(0, 18, 270);
   chassis.holonomic_drive_to_point(0, 0, 0);
 }
-
