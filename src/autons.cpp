@@ -3,6 +3,8 @@
 void rightAutoNoTouch()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  chassis.set_swing_exit_conditions(1, 300, 1000);
   rightBlocker = true;
   intake.spin(reverse, 100, percent);
   wait(.5, sec);
@@ -18,6 +20,8 @@ void rightAutoNoTouch()
 void leftAutoNoTouch()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  chassis.set_swing_exit_conditions(1, 300, 1000);
   leftBlocker = true;
   chassis.drive_distance(7.5);
   chassis.turn_to_angle(40);
@@ -27,6 +31,8 @@ void leftAutoNoTouch()
 void rightAutoTouch()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  chassis.set_swing_exit_conditions(1, 300, 1000);
   rightBlocker = true;
   intake.spin(reverse, 100, percent);
   wait(.5, sec);
