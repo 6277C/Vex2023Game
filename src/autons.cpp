@@ -36,10 +36,19 @@ chassis.drive_distance(-15);
 }
 
 void leftAutoTouch(){
-leftBlocker = true;
-chassis.drive_distance(7.5);
-chassis.turn_to_angle(40);
-leftBlocker = false;
+intake.spin(reverse, 100, percent);
+wait(0.5, sec);
+intake.stop(brake);
+chassis.drive_distance(13);
+chassis.left_swing_to_angle(45);
+chassis.drive_distance(20);
+chassis.drive_distance(-15);
+chassis.turn_to_angle(180);
+rightBlocker = true;
+chassis.drive_distance(12);
+chassis.left_swing_to_angle(145);
+rightBlocker = false;
+chassis.drive_distance(42);
 
 }
 void default_constants() {
