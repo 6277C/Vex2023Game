@@ -96,7 +96,7 @@ void pre_auton(void)
   vexcodeInit();
   default_constants();
   drawGUI();
-
+  driverSelector();
   
   while (
       auto_started ==
