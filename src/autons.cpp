@@ -15,6 +15,12 @@ void rightAutoNoTouch()
   rightBlocker = false;
   chassis.drive_distance(30);
   chassis.drive_distance(-15);
+  chassis.turn_to_angle(-92);
+  intake.spin(reverse, 100, percent);
+  chassis.drive_distance(80);
+  chassis.drive_distance(25);
+  chassis.right_swing_to_angle(45);
+  leftBlocker = true;
 }
 
 void leftAutoNoTouch()
