@@ -19,3 +19,15 @@ void catapultVoid()
 {
     catapult.spin(forward, 100, percent);
 }
+
+void drawGUI()
+{
+Brain.Screen.clearScreen();
+Brain.Screen.setFillColor(red);
+Brain.Screen.drawRectangle(0,0,240,240);
+Brain.Screen.setFillColor(blue);
+Brain.Screen.drawRectangle(240,0,240,240);
+Brain.Screen.printAt(120,60, "Blake");
+Brain.Screen.printAt(360, 60, "Meaghan");
+
+}
