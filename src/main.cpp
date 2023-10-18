@@ -114,6 +114,9 @@ void pre_auton(void)
     case 3:
       Brain.Screen.printAt(50, 50, "Left Auto With Touch");
       break;
+    case 4:
+      Brain.Screen.printAt(50, 50, "Skills Auto");
+      break;
     }
     if (Brain.Screen.pressing())
     {
@@ -122,7 +125,7 @@ void pre_auton(void)
       }
       current_auton_selection++;
     }
-    else if (current_auton_selection == 4)
+    else if (current_auton_selection == 5)
     {
       current_auton_selection = 0;
     }
@@ -147,6 +150,8 @@ void autonomous(void)
   case 3:
     leftAutoTouch();
     break;
+  case 4:
+    skillsAuto();
   }
 }
 

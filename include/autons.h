@@ -18,3 +18,4 @@ void leftAutoNoTouch();
 void rightAutoNoTouch();
 void rightAutoTouch();
 void leftAutoTouch();
+void skillsAuto();

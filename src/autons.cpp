@@ -1,5 +1,14 @@
 #include "vex.h"
 
+void skillsAuto()
+{
+
+
+
+
+
+  
+}
 void rightAutoNoTouch()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
