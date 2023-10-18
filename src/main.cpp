@@ -103,10 +103,10 @@ void pre_auton(void)
     switch (current_auton_selection)
     {
     case 0:
-      Brain.Screen.printAt(50, 50, "Right Auto No Bar");
+      Brain.Screen.printAt(50, 50, "Right Auto WITHOUT Touch");
       break;
     case 1:
-      Brain.Screen.printAt(50, 50, "Left Auto No Bar");
+      Brain.Screen.printAt(50, 50, "Left Auto WITHOUT Touch");
       break;
     case 2:
       Brain.Screen.printAt(50, 50, "Right Auto With Touch");
