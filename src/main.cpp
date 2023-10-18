@@ -97,17 +97,7 @@ void pre_auton(void)
   default_constants();
   drawGUI();
 
-  int x = Brain.Screen.xPosition();
-
-  if (x <= 240)
-  {
-    driver = 1;
-  }
-  else if (x >= 240)
-  {
-    driver = 2;
-  }
-  Brain.Screen.clearScreen();
+  
   while (
       auto_started ==
       false)

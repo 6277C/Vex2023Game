@@ -31,3 +31,17 @@ Brain.Screen.printAt(120,60, "Blake");
 Brain.Screen.printAt(360, 60, "Meaghan");
 
 }
+
+void driverSelector()
+{
+    int x = Brain.Screen.xPosition();
+
+  if (x <= 240)
+  {
+    driver = 1;
+  }
+  else if (x >= 240)
+  {
+    driver = 2;
+  }
+}

@@ -25,6 +25,9 @@
 #include "autons.h"
 #include "functions.h"
 
+
+extern int driver;
+
 #define waitUntil(condition)                                                   \
   do {                                                                         \
     wait(5, msec);                                                             \
