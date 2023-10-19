@@ -27,6 +27,7 @@
 
 
 extern int driver;
+extern float choseDriver;
 
 #define waitUntil(condition)                                                   \
   do {                                                                         \

@@ -90,6 +90,7 @@ bool latch2 = false;
 bool toggle3 = false;
 bool latch3 = false;
 int driver;
+float choseDriver = false;
 
 void pre_auton(void)
 {
@@ -98,9 +99,7 @@ void pre_auton(void)
   drawGUI();
   Brain.Screen.pressed(driverSelector);
   
-  while (
-      auto_started ==
-      false)
+  while (auto_started == false)
   {
     Brain.Screen.clearScreen();
     switch (current_auton_selection)
