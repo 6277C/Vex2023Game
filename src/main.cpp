@@ -77,8 +77,6 @@ Drive chassis(
 );
 
 // Variables
-int current_auton_selection = 0;
-bool auto_started = false;
 bool catapultToggle = false;
 bool toggle = false;
 bool latch = false;
@@ -89,8 +87,6 @@ bool toggle2 = false;
 bool latch2 = false;
 bool toggle3 = false;
 bool latch3 = false;
-int driver;
-float choseDriver = false;
 
 void pre_auton(void)
 {
@@ -98,41 +94,6 @@ void pre_auton(void)
   default_constants();
   drawGUI();
   Brain.Screen.pressed(driverSelector);
-  
-  while (auto_started == false)
-  {
-    Brain.Screen.clearScreen();
-    switch (current_auton_selection)
-    {
-    case 0:
-      Brain.Screen.printAt(50, 50, "Right Auto WITHOUT Touch");
-      break;
-    case 1:
-      Brain.Screen.printAt(50, 50, "Left Auto WITHOUT Touch");
-      break;
-    case 2:
-      Brain.Screen.printAt(50, 50, "Right Auto With Touch");
-      break;
-    case 3:
-      Brain.Screen.printAt(50, 50, "Left Auto With Touch");
-      break;
-    case 4:
-      Brain.Screen.printAt(50, 50, "Skills Auto");
-      break;
-    }
-    if (Brain.Screen.pressing())
-    {
-      while (Brain.Screen.pressing())
-      {
-      }
-      current_auton_selection++;
-    }
-    else if (current_auton_selection == 5)
-    {
-      current_auton_selection = 0;
-    }
-    task::sleep(10);
-  }
 }
 
 void autonomous(void)
