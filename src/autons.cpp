@@ -18,13 +18,18 @@ void rightAutoNoTouch()
   rightBlocker = false;
   chassis.drive_distance(30);
   chassis.drive_distance(-15);
+  default_constants();
   chassis.turn_to_angle(-92);
   intake.spin(reverse, 100, percent);
-  chassis.drive_distance(80);
-  chassis.drive_distance(25);
+  chassis.drive_distance(60);
+  chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  chassis.set_swing_exit_conditions(1, 300, 1000);
   chassis.right_swing_to_angle(42);
   leftBlocker = true;
-  chassis.drive_distance(70);
+  chassis.drive_distance(32);
+  intake.stop(brake);
+  chassis.drive_distance(-10);
 }
 
 void leftAutoNoTouch()
@@ -46,8 +51,8 @@ void leftAutoNoTouch()
   rightBlocker = false;
   chassis.drive_distance(5);
   chassis.turn_to_angle(70);
-  chassis.drive_distance(63);
   intake.spin(reverse, 90, percent);
+  chassis.drive_distance(65);
   wait(1, sec);
   intake.stop(brake);
   chassis.turn_to_angle(130);
@@ -55,6 +60,7 @@ void leftAutoNoTouch()
   intake.spin(forward, 90, percent);
   wait(0.5, sec);
   chassis.drive_distance(10);
+  intake.stop(brake);
 }
 
 void rightAutoTouch()
@@ -71,11 +77,10 @@ void rightAutoTouch()
   chassis.turn_to_angle(-25);
   chassis.drive_distance(30);
   rightBlocker = false;
-  chassis.drive_distance(15);
   chassis.turn_to_angle(180);
-  chassis.drive_distance(12);
+  chassis.drive_distance(26);
   chassis.turn_to_angle(-145);
-  chassis.drive_distance(34);
+  chassis.drive_distance(28);
 }
 
 void leftAutoTouch()
