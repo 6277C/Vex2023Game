@@ -115,6 +115,7 @@ void autonomous(void)
     break;
   case 4:
     skillsAuto();
+    break;
   }
 }
 
