@@ -99,6 +99,17 @@ void pre_auton(void)
       auto_started ==
       false)
   {
+
+
+
+
+
+
+
+
+
+
+    
     Brain.Screen.clearScreen();
     switch (current_auton_selection)
     {
