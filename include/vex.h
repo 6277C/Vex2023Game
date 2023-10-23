@@ -25,11 +25,6 @@
 #include "autons.h"
 #include "functions.h"
 
-
-extern int driver;
-extern int current_auton_selection = 0;
-extern bool auto_started = false;
-
 #define waitUntil(condition)                                                   \
   do {                                                                         \
     wait(5, msec);                                                             \

@@ -87,13 +87,76 @@ bool toggle2 = false;
 bool latch2 = false;
 bool toggle3 = false;
 bool latch3 = false;
+bool choice = false;
+int current_auton_selection = 0;
+bool auto_started = false;
+int driver;
 
 void pre_auton(void)
 {
+
   vexcodeInit();
   default_constants();
   drawGUI();
-  Brain.Screen.pressed(driverSelector);
+  while (auto_started == false)
+  {
+    if (Brain.Screen.pressing())
+    {
+      int x = Brain.Screen.xPosition();
+
+      if (x <= 240)
+      {
+        driver = 1;
+        choice = true;
+      }
+      else if (x >= 240)
+      {
+        driver = 2;
+        choice = true;
+      }
+    }
+
+    if (choice == true)
+    {
+      Brain.Screen.setFillColor(black);
+      Brain.Screen.setFont(monoL);
+      Brain.Screen.clearScreen();
+      while (auto_started == false)
+      {
+        Brain.Screen.clearScreen();
+        switch (current_auton_selection)
+        {
+        case 0:
+          Brain.Screen.printAt(10, 50, "Right Auto WITHOUT Touch");
+          break;
+        case 1:
+          Brain.Screen.printAt(10, 50, "Left Auto WITHOUT Touch");
+          break;
+        case 2:
+          Brain.Screen.printAt(10, 50, "Right Auto With Touch");
+          break;
+        case 3:
+          Brain.Screen.printAt(10, 50, "Left Auto With Touch");
+          break;
+        case 4:
+          Brain.Screen.printAt(10, 50, "Skills Auto");
+          break;
+        }
+        if (Brain.Screen.pressing())
+        {
+          while (Brain.Screen.pressing())
+          {
+          }
+          current_auton_selection++;
+        }
+        else if (current_auton_selection == 5)
+        {
+          current_auton_selection = 0;
+        }
+        task::sleep(10);
+      }
+    }
+  }
 }
 
 void autonomous(void)
@@ -130,6 +193,8 @@ void usercontrol(void)
   BL.setStopping(coast);
   if (driver == 1)
   {
+    Brain.Screen.setFillColor(blue);
+    Brain.Screen.drawRectangle(0,0,480,240);
     while (1)
     {
       // Catapult Prime
@@ -274,6 +339,8 @@ void usercontrol(void)
   }
   else if (driver == 2)
   {
+    Brain.Screen.setFillColor("#FFC0CB");
+    Brain.Screen.drawRectangle(0,0,480,240);
     while (1)
     {
       // Catapult Prime
