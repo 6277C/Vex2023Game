@@ -184,7 +184,7 @@ void autonomous(void)
 
 void usercontrol(void)
 {
-
+ auto_started = true;
   FR.setStopping(coast);
   MR.setStopping(coast);
   BR.setStopping(coast);
