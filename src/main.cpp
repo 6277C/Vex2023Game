@@ -186,6 +186,7 @@ void usercontrol(void)
 {
  auto_started = true;
   catapult.setVelocity(70, percent);
+
   FR.setStopping(coast);
   MR.setStopping(coast);
   BR.setStopping(coast);
@@ -195,7 +196,7 @@ void usercontrol(void)
   if (driver == 1)
   {
     Brain.Screen.setFillColor(blue);
-    Brain.Screen.drawRectangle(0,0,480,240);
+    Brain.Screen.drawRectangle(0, 0, 480, 240);
     while (1)
     {
       // Catapult Prime
@@ -341,7 +342,7 @@ void usercontrol(void)
   else if (driver == 2)
   {
     Brain.Screen.setFillColor("#FFC0CB");
-    Brain.Screen.drawRectangle(0,0,480,240);
+    Brain.Screen.drawRectangle(0, 0, 480, 240);
     while (1)
     {
       // Catapult Prime

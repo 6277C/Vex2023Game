@@ -5,7 +5,7 @@ using signature = vision::signature;
 using code = vision::code;
 
 // A global instance of brain used for printing to the V5 Brain screen
-brain  Brain;
+brain Brain;
 
 // VEXcode device constructors
 inertial Inertial10 = inertial(PORT16);
@@ -31,9 +31,10 @@ bool RemoteControlCodeEnabled = true;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
- * 
+ *
  * This should be called at the start of your int main function.
  */
-void vexcodeInit( void ) {
+void vexcodeInit(void)
+{
   // nothing to initialize
 }

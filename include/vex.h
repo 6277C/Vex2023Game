@@ -25,10 +25,11 @@
 #include "autons.h"
 #include "functions.h"
 
-#define waitUntil(condition)                                                   \
-  do {                                                                         \
-    wait(5, msec);                                                             \
+#define waitUntil(condition) \
+  do                         \
+  {                          \
+    wait(5, msec);           \
   } while (!(condition))
 
-#define repeat(iterations)                                                     \
+#define repeat(iterations) \
   for (int iterator = 0; iterator < iterations; iterator++)
