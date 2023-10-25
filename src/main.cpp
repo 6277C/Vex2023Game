@@ -185,7 +185,6 @@ void autonomous(void)
 void usercontrol(void)
 {
  auto_started = true;
-  catapult.setVelocity(70, percent);
   FR.setStopping(coast);
   MR.setStopping(coast);
   BR.setStopping(coast);
