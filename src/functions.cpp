@@ -34,19 +34,21 @@ void drawGUI()
 }
 
 //Brain Screen is 480 x 272 pixels (*240 with menu bar*)
+// 156 x 115
 void drawAutoButtons()
 {
+    Brain.Screen.clearScreen();
     Brain.Screen.setFillColor(red);
-    Brain.Screen.drawRectangle(156, 115, 146, 105);
+    Brain.Screen.drawRectangle(0, 0, 146, 105);
     Brain.Screen.setFillColor(green);
-    Brain.Screen.drawRectangle(156, 230, 146, 105);
+    Brain.Screen.drawRectangle(0, 115, 146, 105);
     Brain.Screen.setFillColor(blue);
-    Brain.Screen.drawRectangle(312, 115, 146, 105);
+    Brain.Screen.drawRectangle(156, 0, 146, 105);
     Brain.Screen.setFillColor(orange);
-    Brain.Screen.drawRectangle(312, 230, 146, 105);
+    Brain.Screen.drawRectangle(156, 115, 146, 105);
     Brain.Screen.setFillColor(yellow);
-    Brain.Screen.drawRectangle(468, 115, 146, 105);
+    Brain.Screen.drawRectangle(312, 0, 146, 105);
     Brain.Screen.setFillColor(white);
-    Brain.Screen.drawRectangle(468, 230, 146, 105);
+    Brain.Screen.drawRectangle(312, 115, 146, 105);
     Brain.Screen.setFillColor(black);
 }

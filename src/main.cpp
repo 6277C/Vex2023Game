@@ -91,6 +91,7 @@ bool choice = false;
 int current_auton_selection = 0;
 bool auto_started = false;
 int driver;
+bool drawToggle = false;
 
 void pre_auton(void)
 {
@@ -100,7 +101,7 @@ void pre_auton(void)
   drawGUI();
   while (auto_started == false)
   {
-    if (Brain.Screen.pressing())
+    if (Brain.Screen.pressing() && choice == false)
     {
       int x = Brain.Screen.xPosition();
 
@@ -115,45 +116,35 @@ void pre_auton(void)
         choice = true;
       }
     }
-
-    if (choice == true)
+    if (choice == true && drawToggle == false)
     {
-      Brain.Screen.setFillColor(black);
-      Brain.Screen.setFont(monoL);
-      Brain.Screen.clearScreen();
-      while (auto_started == false)
-      {
-        Brain.Screen.clearScreen();
-        switch (current_auton_selection)
-        {
-        case 0:
-          Brain.Screen.printAt(10, 50, "Right Auto WITHOUT Touch");
-          break;
-        case 1:
-          Brain.Screen.printAt(10, 50, "Left Auto WITHOUT Touch");
-          break;
-        case 2:
-          Brain.Screen.printAt(10, 50, "Right Auto With Touch");
-          break;
-        case 3:
-          Brain.Screen.printAt(10, 50, "Left Auto With Touch");
-          break;
-        case 4:
-          Brain.Screen.printAt(10, 50, "Skills Auto");
-          break;
-        }
-        if (Brain.Screen.pressing())
-        {
-          while (Brain.Screen.pressing())
-          {
-          }
-          current_auton_selection++;
-        }
-        else if (current_auton_selection == 5)
-        {
-          current_auton_selection = 0;
-        }
-        task::sleep(10);
+      drawAutoButtons();
+      drawToggle = true;
+      wait(.5, sec);
+    }
+
+    if (Brain.Screen.pressing() && choice == true)
+    {
+      int xpos = Brain.Screen.xPosition();
+      int ypos = Brain.Screen.yPosition();
+
+      if(xpos > 0 && xpos < 146 && ypos > 0 && ypos < 105){
+        current_auton_selection = 0;
+      }
+      else if(xpos > 0 && xpos < 146 && ypos > 115 && ypos < 220){
+        current_auton_selection = 1;
+      }
+      else if(xpos > 156 && xpos < 302 && ypos > 0 && ypos < 105){
+        current_auton_selection = 2;
+      }
+      else if(xpos > 156 && xpos < 302 && ypos > 115 && ypos < 220){
+        current_auton_selection = 3;
+      }
+      else if(xpos > 312 && xpos < 458 && ypos > 0 && ypos < 105){
+        current_auton_selection = 4;
+      }
+      else if(xpos > 312 && xpos < 458 && ypos > 115 && ypos < 220){
+        current_auton_selection = 5;
       }
     }
   }
@@ -177,7 +168,10 @@ void autonomous(void)
     leftAutoTouch();
     break;
   case 4:
-    skillsAuto();
+    rightAutoElimination();
+    break;
+  case 5:
+    leftAutoElimination();
     break;
   }
 }

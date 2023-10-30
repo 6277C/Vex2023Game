@@ -19,3 +19,5 @@ void rightAutoNoTouch();
 void rightAutoTouch();
 void leftAutoTouch();
 void skillsAuto();
+void rightAutoElimination();
+void leftAutoElimination();
