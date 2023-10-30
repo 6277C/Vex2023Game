@@ -32,3 +32,14 @@ void drawGUI()
     Brain.Screen.setFillColor("#FFC0CB");
     Brain.Screen.printAt(360, 60, "Meaghan");
 }
+
+void drawAutoButtons()
+{
+    Brain.Screen.setFillColor(red);
+    Brain.Screen.drawRectangle(156, 115, 146, 105);
+    Brain.Screen.drawRectangle(156, 230, 146, 105);
+    Brain.Screen.drawRectangle(312, 115, 146, 105);
+    Brain.Screen.drawRectangle(312, 230, 146, 105);
+    Brain.Screen.drawRectangle(468, 115, 146, 105);
+    Brain.Screen.drawRectangle(468, 230, 146, 105);
+}
