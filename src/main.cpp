@@ -87,10 +87,13 @@ bool toggle2 = false;
 bool latch2 = false;
 bool toggle3 = false;
 bool latch3 = false;
-bool choice = false;
+bool driverChoice = false;
+bool autoChoice = false;
 int current_auton_selection = 0;
 bool auto_started = false;
 int driver;
+bool drawToggle = false;
+bool autoLoopStop = false;
 
 void pre_auton(void)
 {
@@ -100,60 +103,99 @@ void pre_auton(void)
   drawGUI();
   while (auto_started == false)
   {
-    if (Brain.Screen.pressing())
+    if (Brain.Screen.pressing() && driverChoice == false && autoChoice == false)
     {
       int x = Brain.Screen.xPosition();
 
       if (x <= 240)
       {
         driver = 1;
-        choice = true;
+        driverChoice = true;
       }
       else if (x >= 240)
       {
         driver = 2;
-        choice = true;
+        driverChoice = true;
       }
     }
-
-    if (choice == true)
+    if (driverChoice == true && drawToggle == false)
     {
-      Brain.Screen.setFillColor(black);
-      Brain.Screen.setFont(monoL);
-      Brain.Screen.clearScreen();
-      while (auto_started == false)
+      drawAutoButtons();
+      drawToggle = true;
+      wait(.5, sec);
+    }
+
+    if (Brain.Screen.pressing() && driverChoice == true && autoChoice == false)
+    {
+      int xpos = Brain.Screen.xPosition();
+      int ypos = Brain.Screen.yPosition();
+
+      if (xpos > 0 && xpos < 146 && ypos > 0 && ypos < 105)
       {
-        Brain.Screen.clearScreen();
-        switch (current_auton_selection)
-        {
-        case 0:
-          Brain.Screen.printAt(10, 50, "Right Auto WITHOUT Touch");
-          break;
-        case 1:
-          Brain.Screen.printAt(10, 50, "Left Auto WITHOUT Touch");
-          break;
-        case 2:
-          Brain.Screen.printAt(10, 50, "Right Auto With Touch");
-          break;
-        case 3:
-          Brain.Screen.printAt(10, 50, "Left Auto With Touch");
-          break;
-        case 4:
-          Brain.Screen.printAt(10, 50, "Skills Auto");
-          break;
-        }
-        if (Brain.Screen.pressing())
-        {
-          while (Brain.Screen.pressing())
-          {
-          }
-          current_auton_selection++;
-        }
-        else if (current_auton_selection == 5)
-        {
-          current_auton_selection = 0;
-        }
-        task::sleep(10);
+        current_auton_selection = 0;
+        autoChoice = true;
+      }
+      else if (xpos > 0 && xpos < 146 && ypos > 115 && ypos < 220)
+      {
+        current_auton_selection = 1;
+        autoChoice = true;
+      }
+      else if (xpos > 156 && xpos < 302 && ypos > 0 && ypos < 105)
+      {
+        current_auton_selection = 2;
+        autoChoice = true;
+      }
+      else if (xpos > 156 && xpos < 302 && ypos > 115 && ypos < 220)
+      {
+        current_auton_selection = 3;
+        autoChoice = true;
+      }
+      else if (xpos > 312 && xpos < 458 && ypos > 0 && ypos < 105)
+      {
+        current_auton_selection = 4;
+        autoChoice = true;
+      }
+      else if (xpos > 312 && xpos < 458 && ypos > 115 && ypos < 220)
+      {
+        current_auton_selection = 5;
+        autoChoice = true;
+      }
+    }
+    if (autoChoice == true && autoLoopStop == false)
+    {
+      Brain.Screen.clearScreen();
+      switch (current_auton_selection)
+      {
+      case 0:
+        Brain.Screen.printAt(10, 120, "Right Auto WITHOUT touch");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 1:
+        Brain.Screen.printAt(10, 120, "Left Auto WITHOUT touch");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 2:
+        Brain.Screen.printAt(10, 120, "Right Auto WITH touch");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 3:
+        Brain.Screen.printAt(10, 120, "Left Auto WITH touch");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 4:
+        Brain.Screen.printAt(10, 120, "Right Auto Elimination");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 5:
+        Brain.Screen.printAt(10, 120, "Left Auto Elimination");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
       }
     }
   }
@@ -177,7 +219,10 @@ void autonomous(void)
     leftAutoTouch();
     break;
   case 4:
-    skillsAuto();
+    rightAutoElimination();
+    break;
+  case 5:
+    leftAutoElimination();
     break;
   }
 }
