@@ -103,6 +103,7 @@ void pre_auton(void)
   drawGUI();
   while (auto_started == false)
   {
+    //Logic for driver selector
     if (Brain.Screen.pressing() && driverChoice == false && autoChoice == false)
     {
       int x = Brain.Screen.xPosition();
@@ -112,20 +113,21 @@ void pre_auton(void)
         driver = 1;
         driverChoice = true;
       }
-      else if (x >= 240)
+      else if (x > 240)
       {
         driver = 2;
         driverChoice = true;
       }
     }
-    if (driverChoice == true && drawToggle == false)
+    //Print the 6 auto selector buttons if driver 1 is selected
+    if (driverChoice == true && drawToggle == false && driver == 1)
     {
       drawAutoButtons();
       drawToggle = true;
       wait(.5, sec);
     }
-
-    if (Brain.Screen.pressing() && driverChoice == true && autoChoice == false)
+//Logic for auto buttons
+    if (Brain.Screen.pressing() && driverChoice == true && autoChoice == false && driver == 1)
     {
       int xpos = Brain.Screen.xPosition();
       int ypos = Brain.Screen.yPosition();
@@ -161,7 +163,8 @@ void pre_auton(void)
         autoChoice = true;
       }
     }
-    if (autoChoice == true && autoLoopStop == false)
+    //After selecting auto, display the name of the auto across the whole screen
+    if (autoChoice == true && autoLoopStop == false && driver == 1)
     {
       Brain.Screen.clearScreen();
       switch (current_auton_selection)
@@ -198,6 +201,14 @@ void pre_auton(void)
         break;
       }
     }
+    //If driver 2 is selected, then choose the skills auto
+    if (driver == 2)
+    {
+      Brain.Screen.clearScreen();
+      current_auton_selection = 6;
+      Brain.Screen.printAt(10, 120, "Skills Autonomous");
+      auto_started = true;
+    }
   }
 }
 
@@ -223,6 +234,9 @@ void autonomous(void)
     break;
   case 5:
     leftAutoElimination();
+    break;
+  case 6:
+    skillsAuto();
     break;
   }
 }
@@ -385,7 +399,7 @@ void usercontrol(void)
   }
   else if (driver == 2)
   {
-    Brain.Screen.setFillColor("#FFC0CB");
+    Brain.Screen.setFillColor(purple);
     Brain.Screen.drawRectangle(0, 0, 480, 240);
     while (1)
     {
