@@ -204,8 +204,10 @@ void pre_auton(void)
     //If driver 2 is selected, then choose the skills auto
     if (driver == 2)
     {
-      Brain.Screen.clearScreen();
       current_auton_selection = 6;
+      Brain.Screen.clearScreen();
+      Brain.Screen.setFont(propXL);
+      Brain.Screen.setFillColor(black);
       Brain.Screen.printAt(10, 120, "Skills Autonomous");
       auto_started = true;
     }
