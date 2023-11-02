@@ -103,32 +103,32 @@ void rightAutoElimination(){
 
 
 }
+
+
 void leftAutoNoTouch()
 {
-    chassis.set_drive_exit_conditions(1.5, 300, 1000);
-    chassis.set_turn_exit_conditions(1, 300, 1000);
-    chassis.set_swing_exit_conditions(1, 300, 1000);
-    intake.spin(reverse, 100, percent);
-    wait(0.5, sec);
-    intake.stop(brake);
-    chassis.drive_distance(13);
-    chassis.left_swing_to_angle(45);
-    chassis.drive_distance(20);
-    chassis.drive_distance(-15);
-    chassis.drive_distance(10);
-    chassis.drive_distance(-5);
-    chassis.turn_to_angle(180);
-    rightBlocker = true;
-    chassis.drive_distance(14);
-    chassis.left_swing_to_angle(145);
+   chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  chassis.set_swing_exit_conditions(1, 300, 1000);
+  intake.spin(reverse, 100, percent);
+  wait(.5, sec);
+  intake.stop(brake);
+  chassis.drive_distance(-8);
+  rightBlocker = (true);
+  chassis.right_swing_to_angle(45);
+  chassis.drive_distance(-20);
+  rightBlocker = (false);
+  chassis.drive_distance(15);
+  chassis.right_swing_to_angle(-90);
+    chassis.left_swing_to_angle(145-180);
     rightBlocker = false;
     chassis.drive_distance(5);
-    chassis.turn_to_angle(70);
+    chassis.turn_to_angle(70-180);
     intake.spin(reverse, 90, percent);
     chassis.drive_distance(62);
     wait(1, sec);
     intake.stop(brake);
-    chassis.turn_to_angle(130);
+    chassis.turn_to_angle(130-180);
     chassis.drive_distance(10);
     intake.spin(forward, 90, percent);
     wait(0.5, sec);
@@ -136,6 +136,7 @@ void leftAutoNoTouch()
     intake.stop(brake);
 }
 
+//done
 void rightAutoTouch()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
@@ -153,27 +154,29 @@ void rightAutoTouch()
   chassis.turn_to_angle(180);
   chassis.drive_distance(26);
   chassis.turn_to_angle(-145);
-  chassis.drive_distance(28);
+  chassis.drive_distance(32);
 }
 
+//done
+//start with robot backward one triball on the right back and one in the far corner of match load
 void leftAutoTouch()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
   chassis.set_turn_exit_conditions(1, 300, 1000);
   chassis.set_swing_exit_conditions(1, 300, 1000);
   intake.spin(reverse, 100, percent);
-  wait(0.5, sec);
+  wait(.5, sec);
   intake.stop(brake);
-  chassis.drive_distance(13);
-  chassis.left_swing_to_angle(45);
-  chassis.drive_distance(10);
-  chassis.drive_distance(-5);
-  chassis.turn_to_angle(180);
-  rightBlocker = true;
-  chassis.drive_distance(12);
-  chassis.left_swing_to_angle(145);
-  rightBlocker = false;
-  chassis.drive_distance(45);
+  chassis.drive_distance(-8);
+  rightBlocker = (true);
+  chassis.right_swing_to_angle(45);
+  chassis.drive_distance(-20);
+  rightBlocker = (false);
+  chassis.drive_distance(15);
+  chassis.right_swing_to_angle(0);
+  chassis.drive_distance(15);
+  chassis.left_swing_to_angle(-45);
+  chassis.drive_distance(36);
 }
 
 void default_constants()
