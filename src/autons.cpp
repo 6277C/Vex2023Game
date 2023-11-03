@@ -88,7 +88,8 @@ void rightAutoNoTouch()
   chassis.drive_distance(-10);
 }
 
-void leftAutoElimination(){
+void leftAutoElimination()
+{
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
   chassis.set_turn_exit_conditions(1, 300, 1000);
   chassis.set_swing_exit_conditions(1, 300, 1000);
@@ -96,18 +97,15 @@ void leftAutoElimination(){
   chassis.right_swing_to_angle(45);
   chassis.drive_distance(-15);
   chassis.drive_distance(5);
-
 }
 
-void rightAutoElimination(){
-
-
+void rightAutoElimination()
+{
 }
-
 
 void leftAutoNoTouch()
 {
-   chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_drive_exit_conditions(1.5, 300, 1000);
   chassis.set_turn_exit_conditions(1, 300, 1000);
   chassis.set_swing_exit_conditions(1, 300, 1000);
   intake.spin(reverse, 100, percent);
@@ -120,23 +118,23 @@ void leftAutoNoTouch()
   rightBlocker = (false);
   chassis.drive_distance(15);
   chassis.right_swing_to_angle(-90);
-    chassis.left_swing_to_angle(145-180);
-    rightBlocker = false;
-    chassis.drive_distance(5);
-    chassis.turn_to_angle(70-180);
-    intake.spin(reverse, 90, percent);
-    chassis.drive_distance(62);
-    wait(1, sec);
-    intake.stop(brake);
-    chassis.turn_to_angle(130-180);
-    chassis.drive_distance(10);
-    intake.spin(forward, 90, percent);
-    wait(0.5, sec);
-    chassis.drive_distance(10);
-    intake.stop(brake);
+  chassis.left_swing_to_angle(145 - 180);
+  rightBlocker = false;
+  chassis.drive_distance(5);
+  chassis.turn_to_angle(70 - 180);
+  intake.spin(reverse, 90, percent);
+  chassis.drive_distance(62);
+  wait(1, sec);
+  intake.stop(brake);
+  chassis.turn_to_angle(130 - 180);
+  chassis.drive_distance(10);
+  intake.spin(forward, 90, percent);
+  wait(0.5, sec);
+  chassis.drive_distance(10);
+  intake.stop(brake);
 }
 
-//done
+// done
 void rightAutoTouch()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
@@ -157,8 +155,8 @@ void rightAutoTouch()
   chassis.drive_distance(32);
 }
 
-//done
-//start with robot backward one triball on the right back and one in the far corner of match load
+// done
+// start with robot backward one triball on the right back and one in the far corner of match load
 void leftAutoTouch()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
