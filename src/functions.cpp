@@ -24,14 +24,22 @@ void drawGUI()
 {
     Brain.Screen.clearScreen();
     Brain.Screen.setFillColor(blue);
-    Brain.Screen.drawRectangle(0, 0, 240, 240);
+    Brain.Screen.drawRectangle(0, 0, 240, 120);
     Brain.Screen.setFillColor(purple);
-    Brain.Screen.drawRectangle(240, 0, 240, 240);
+    Brain.Screen.drawRectangle(240, 0, 240, 120);
     Brain.Screen.setFillColor(blue);
-    Brain.Screen.setFont(propXL);
-    Brain.Screen.printAt(80, 130, "Blake");
+    Brain.Screen.drawRectangle(0, 120, 240, 120);
     Brain.Screen.setFillColor(purple);
-    Brain.Screen.printAt(280, 130, "Meaghan");
+    Brain.Screen.drawRectangle(240, 120, 240, 120);
+    Brain.Screen.setFont(propXL);
+    Brain.Screen.setFillColor(blue);
+    Brain.Screen.printAt(80, 60, "Blake Match");
+    Brain.Screen.setFillColor(purple);
+    Brain.Screen.printAt(280, 60, "Meaghan Match");
+    Brain.Screen.setFillColor(blue);
+    Brain.Screen.printAt(80, 180, "Blake Skills");
+    Brain.Screen.setFillColor(purple);
+    Brain.Screen.printAt(280, 180, "Meaghan Skills");
 }
 
 // Brain Screen is 480 x 272 pixels (*240 with menu bar*)
