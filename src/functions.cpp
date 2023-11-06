@@ -65,3 +65,22 @@ void drawAutoButtons()
     Brain.Screen.printAt(332, 175, "Left Auto Elimination");
     Brain.Screen.setFont(propXL);
 }
+
+void skillsAutoShort()
+{
+    chassis.set_drive_exit_conditions(1.5, 300, 1000);
+    chassis.set_swing_exit_conditions(1, 300, 1000);
+    chassis.set_turn_exit_conditions(1, 300, 1000);
+    intake.spin(reverse, 100, percent);
+    wait(.5, sec);
+    intake.stop(brake);
+    chassis.drive_distance(13);
+    chassis.left_swing_to_angle(45);
+    chassis.drive_distance(20);
+    chassis.drive_distance(-14);
+    chassis.turn_to_angle(135);
+    chassis.drive_distance(10);
+    chassis.turn_to_angle(-55);
+    leftBlocker = true;
+    chassis.drive_distance(5);
+}

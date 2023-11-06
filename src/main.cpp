@@ -264,6 +264,7 @@ void usercontrol(void)
   FL.setStopping(coast);
   ML.setStopping(coast);
   BL.setStopping(coast);
+  // Blake Match
   if (driver == 1)
   {
     Brain.Screen.setFillColor(blue);
@@ -410,6 +411,7 @@ void usercontrol(void)
       wait(20, msec);
     }
   }
+  // Meaghan Match
   else if (driver == 2)
   {
     Brain.Screen.setFillColor(purple);
@@ -550,6 +552,297 @@ void usercontrol(void)
       else
       {
         latch3 = false;
+      }
+      chassis.control_arcade();
+
+      wait(20, msec);
+    }
+  }
+  // Blake Skills
+  else if (driver == 3)
+  {
+    Brain.Screen.setFillColor(blue);
+    Brain.Screen.drawRectangle(0, 0, 480, 240);
+    while (1)
+    {
+      // Catapult Prime
+      if (Controller1.ButtonUp.pressing())
+      {
+        catapultPrime = true;
+      }
+      // Code for catapult
+      if (catapultPrime == true)
+      {
+        if (Controller1.ButtonL1.pressing())
+        {
+          catapult.spin(forward);
+          wait(500, msec);
+          catapultToggle = false;
+        }
+        else
+        {
+          if (catapultRot.position(degrees) < 57 && catapultToggle == false)
+          {
+            catapult.spin(forward);
+          }
+          else
+          {
+            catapult.stop(coast);
+            catapultToggle = true;
+          }
+        }
+      }
+      // Code for back blocker
+      if (toggle)
+      {
+        backBlocker = true;
+      }
+      else
+      {
+        backBlocker = false;
+      }
+
+      if (Controller1.ButtonX.pressing())
+      {
+        if (!latch)
+        {
+          toggle = !toggle;
+          latch = true;
+        }
+      }
+      else
+      {
+        latch = false;
+      }
+
+      // Code for Side Blocker
+      if (toggle1)
+      {
+        leftBlocker = true;
+        rightBlocker = true;
+      }
+      else
+      {
+        rightBlocker = false;
+        leftBlocker = false;
+      }
+
+      if (Controller1.ButtonL2.pressing())
+      {
+        if (!latch1)
+        {
+          toggle1 = !toggle1;
+          latch1 = true;
+        }
+      }
+      else
+      {
+        latch1 = false;
+      }
+
+      // Intake Code
+
+      if (toggle2)
+      {
+        intake.spin(reverse, 100, percent);
+      }
+      else
+      {
+        intake.stop(coast);
+      }
+
+      if (Controller1.ButtonR1.pressing())
+      {
+        if (!latch2)
+        {
+          toggle2 = !toggle2;
+          latch2 = true;
+        }
+      }
+      else
+      {
+        latch2 = false;
+      }
+
+      if (Controller1.ButtonR2.pressing())
+      {
+        intake.spin(forward, 100, percent);
+      }
+      // Ratchet
+      if (Controller1.ButtonLeft.pressing())
+      {
+
+        ratchet = true;
+      }
+      else
+      {
+        ratchet = false;
+      }
+      // hang
+      if (toggle3)
+      {
+        hang = true;
+      }
+      else
+      {
+        hang = false;
+      }
+
+      if (Controller1.ButtonB.pressing())
+      {
+        if (!latch3)
+        {
+          toggle3 = !toggle3;
+          latch3 = true;
+        }
+      }
+      else
+      {
+        latch3 = false;
+      }
+
+      if (Controller1.ButtonDown.pressing())
+      {
+        skillsAutoShort();
+        catapultPrime = true;
+        toggle1 = true;
+        while (Controller1.ButtonDown.pressing())
+        {
+        }
+      }
+      chassis.control_tank();
+
+      wait(20, msec);
+    }
+  }
+  // Meaghan Skills
+  else if (driver == 4)
+  {
+    Brain.Screen.setFillColor(purple);
+    Brain.Screen.drawRectangle(0, 0, 480, 240);
+    while (1)
+    {
+      // Catapult Prime
+      if (Controller1.ButtonX.pressing())
+      {
+        catapultPrime = true;
+      }
+      // Code for catapult
+      if (catapultPrime == true)
+      {
+        if (Controller1.ButtonR2.pressing())
+        {
+          catapult.spin(forward);
+          wait(500, msec);
+          catapultToggle = false;
+        }
+        else
+        {
+          if (catapultRot.position(degrees) < 57 && catapultToggle == false)
+          {
+            catapult.spin(forward);
+          }
+          else
+          {
+            catapult.stop(coast);
+            catapultToggle = true;
+          }
+        }
+      }
+      // Code for back blocker
+      if (toggle)
+      {
+        backBlocker = true;
+      }
+      else
+      {
+        backBlocker = false;
+      }
+
+      if (Controller1.ButtonL2.pressing())
+      {
+        if (!latch)
+        {
+          toggle = !toggle;
+          latch = true;
+        }
+      }
+      else
+      {
+        latch = false;
+      }
+
+      // Code for Side Blocker
+      if (toggle1)
+      {
+        leftBlocker = true;
+        rightBlocker = true;
+      }
+      else
+      {
+        rightBlocker = false;
+        leftBlocker = false;
+      }
+
+      if (Controller1.ButtonL1.pressing())
+      {
+        if (!latch1)
+        {
+          toggle1 = !toggle1;
+          latch1 = true;
+        }
+      }
+      else
+      {
+        latch1 = false;
+      }
+
+      // Intake Code
+
+      if (toggle2)
+      {
+        intake.spin(reverse, 100, percent);
+      }
+      else
+      {
+        intake.stop(coast);
+      }
+
+      if (Controller1.ButtonR1.pressing())
+      {
+        if (!latch2)
+        {
+          toggle2 = !toggle2;
+          latch2 = true;
+        }
+      }
+      else
+      {
+        latch2 = false;
+      }
+
+      if (Controller1.ButtonY.pressing())
+      {
+        intake.spin(forward, 100, percent);
+      }
+      // Ratchet
+      if (Controller1.ButtonB.pressing())
+      {
+
+        ratchet = true;
+      }
+      else
+      {
+        ratchet = false;
+      }
+      if (Controller1.ButtonDown.pressing())
+      {
+        skillsAutoShort();
+        catapultPrime = true;
+        toggle1 = true;
+        while (Controller1.ButtonDown.pressing())
+        {
+        }
       }
       chassis.control_arcade();
 
