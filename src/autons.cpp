@@ -165,7 +165,7 @@ void leftAutoTouch()
   intake.spin(reverse, 100, percent);
   wait(.5, sec);
   intake.stop(brake);
-  chassis.drive_distance(-8);
+  chassis.drive_distance(-10);
   rightBlocker = (true);
   chassis.right_swing_to_angle(45);
   chassis.drive_distance(-20);
