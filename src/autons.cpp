@@ -117,13 +117,9 @@ void leftAutoNoTouch()
   chassis.drive_distance(-20);
   rightBlocker = (false);
   chassis.drive_distance(15);
-  chassis.right_swing_to_angle(-90);
-  chassis.left_swing_to_angle(145 - 180);
-  rightBlocker = false;
-  chassis.drive_distance(5);
-  chassis.turn_to_angle(70 - 180);
+  chassis.right_swing_to_angle(-110);
   intake.spin(reverse, 90, percent);
-  chassis.drive_distance(62);
+  chassis.drive_distance(63);
   wait(1, sec);
   intake.stop(brake);
   chassis.turn_to_angle(130 - 180);
