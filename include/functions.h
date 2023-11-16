@@ -1,5 +1,5 @@
 void plowVoid();
 void catapultVoid();
 void drawGUI();
-void driverSelector();
-void autonSelector();
+void drawAutoButtons();
+void skillsAutoShort();

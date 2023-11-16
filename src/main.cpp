@@ -87,10 +87,13 @@ bool toggle2 = false;
 bool latch2 = false;
 bool toggle3 = false;
 bool latch3 = false;
-bool choice = false;
+bool driverChoice = false;
+bool autoChoice = false;
 int current_auton_selection = 0;
 bool auto_started = false;
 int driver;
+bool drawToggle = false;
+bool autoLoopStop = false;
 
 void pre_auton(void)
 {
@@ -100,61 +103,124 @@ void pre_auton(void)
   drawGUI();
   while (auto_started == false)
   {
-    if (Brain.Screen.pressing())
+    // Logic for driver selector
+    if (Brain.Screen.pressing() && driverChoice == false && autoChoice == false)
     {
       int x = Brain.Screen.xPosition();
+      int y = Brain.Screen.yPosition();
 
-      if (x <= 240)
+      if (x < 240 && x > 0 && y > 0 && y < 120)
       {
         driver = 1;
-        choice = true;
+        driverChoice = true;
       }
-      else if (x >= 240)
+      else if (x > 240 && x < 480 && y > 0 && y < 120)
       {
         driver = 2;
-        choice = true;
+        driverChoice = true;
+      }
+      else if (x < 240 && x > 0 && y > 120 && y < 240)
+      {
+        driver = 3;
+        driverChoice = true;
+      }
+      else if (x > 240 && x < 480 && y > 120 && y < 240)
+      {
+        driver = 4;
+        driverChoice = true;
       }
     }
-
-    if (choice == true)
+    // Print the 6 auto selector buttons if driver 1 is selected
+    if (driverChoice == true && drawToggle == false && (driver == 1 or driver == 2))
     {
-      Brain.Screen.setFillColor(black);
-      Brain.Screen.setFont(monoL);
-      Brain.Screen.clearScreen();
-      while (auto_started == false)
+      drawAutoButtons();
+      drawToggle = true;
+      wait(.5, sec);
+    }
+    // Logic for auto buttons
+    if (Brain.Screen.pressing() && driverChoice == true && autoChoice == false && (driver == 1 or driver == 2))
+    {
+      int xpos = Brain.Screen.xPosition();
+      int ypos = Brain.Screen.yPosition();
+
+      if (xpos > 0 && xpos < 146 && ypos > 0 && ypos < 105)
       {
-        Brain.Screen.clearScreen();
-        switch (current_auton_selection)
-        {
-        case 0:
-          Brain.Screen.printAt(10, 50, "Right Auto WITHOUT Touch");
-          break;
-        case 1:
-          Brain.Screen.printAt(10, 50, "Left Auto WITHOUT Touch");
-          break;
-        case 2:
-          Brain.Screen.printAt(10, 50, "Right Auto With Touch");
-          break;
-        case 3:
-          Brain.Screen.printAt(10, 50, "Left Auto With Touch");
-          break;
-        case 4:
-          Brain.Screen.printAt(10, 50, "Skills Auto");
-          break;
-        }
-        if (Brain.Screen.pressing())
-        {
-          while (Brain.Screen.pressing())
-          {
-          }
-          current_auton_selection++;
-        }
-        else if (current_auton_selection == 5)
-        {
-          current_auton_selection = 0;
-        }
-        task::sleep(10);
+        current_auton_selection = 0;
+        autoChoice = true;
       }
+      else if (xpos > 0 && xpos < 146 && ypos > 115 && ypos < 220)
+      {
+        current_auton_selection = 1;
+        autoChoice = true;
+      }
+      else if (xpos > 156 && xpos < 302 && ypos > 0 && ypos < 105)
+      {
+        current_auton_selection = 2;
+        autoChoice = true;
+      }
+      else if (xpos > 156 && xpos < 302 && ypos > 115 && ypos < 220)
+      {
+        current_auton_selection = 3;
+        autoChoice = true;
+      }
+      else if (xpos > 312 && xpos < 458 && ypos > 0 && ypos < 105)
+      {
+        current_auton_selection = 4;
+        autoChoice = true;
+      }
+      else if (xpos > 312 && xpos < 458 && ypos > 115 && ypos < 220)
+      {
+        current_auton_selection = 5;
+        autoChoice = true;
+      }
+    }
+    // After selecting auto, display the name of the auto across the whole screen
+    if (autoChoice == true && autoLoopStop == false && (driver == 1 or driver == 2))
+    {
+      Brain.Screen.clearScreen();
+      switch (current_auton_selection)
+      {
+      case 0:
+        Brain.Screen.printAt(10, 120, "Right Auto WITHOUT touch");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 1:
+        Brain.Screen.printAt(10, 120, "Left Auto WITHOUT touch");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 2:
+        Brain.Screen.printAt(10, 120, "Right Auto WITH touch");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 3:
+        Brain.Screen.printAt(10, 120, "Left Auto WITH touch");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 4:
+        Brain.Screen.printAt(10, 120, "Right Auto Elimination");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      case 5:
+        Brain.Screen.printAt(10, 120, "Left Auto Elimination");
+        autoLoopStop = true;
+        auto_started = true;
+        break;
+      }
+    }
+    // If driver 2 is selected, then choose the skills auto
+    if (driver == 3 or driver == 4)
+    {
+      current_auton_selection = 6;
+      Brain.Screen.clearScreen();
+      Brain.Screen.setFont(propXL);
+      Brain.Screen.setFillColor(black);
+      Brain.Screen.printAt(10, 120, "Skills Autonomous");
+      auto_started = true;
     }
   }
 }
@@ -177,6 +243,12 @@ void autonomous(void)
     leftAutoTouch();
     break;
   case 4:
+    rightAutoElimination();
+    break;
+  case 5:
+    leftAutoElimination();
+    break;
+  case 6:
     skillsAuto();
     break;
   }
@@ -186,13 +258,13 @@ void usercontrol(void)
 {
   auto_started = true;
   catapult.setVelocity(70, percent);
-
   FR.setStopping(coast);
   MR.setStopping(coast);
   BR.setStopping(coast);
   FL.setStopping(coast);
   ML.setStopping(coast);
   BL.setStopping(coast);
+  // Blake Match
   if (driver == 1)
   {
     Brain.Screen.setFillColor(blue);
@@ -339,9 +411,10 @@ void usercontrol(void)
       wait(20, msec);
     }
   }
+  // Meaghan Match
   else if (driver == 2)
   {
-    Brain.Screen.setFillColor("#FFC0CB");
+    Brain.Screen.setFillColor(purple);
     Brain.Screen.drawRectangle(0, 0, 480, 240);
     while (1)
     {
@@ -479,6 +552,297 @@ void usercontrol(void)
       else
       {
         latch3 = false;
+      }
+      chassis.control_arcade();
+
+      wait(20, msec);
+    }
+  }
+  // Blake Skills
+  else if (driver == 3)
+  {
+    Brain.Screen.setFillColor(blue);
+    Brain.Screen.drawRectangle(0, 0, 480, 240);
+    while (1)
+    {
+      // Catapult Prime
+      if (Controller1.ButtonUp.pressing())
+      {
+        catapultPrime = true;
+      }
+      // Code for catapult
+      if (catapultPrime == true)
+      {
+        if (Controller1.ButtonL1.pressing())
+        {
+          catapult.spin(forward);
+          wait(500, msec);
+          catapultToggle = false;
+        }
+        else
+        {
+          if (catapultRot.position(degrees) < 57 && catapultToggle == false)
+          {
+            catapult.spin(forward);
+          }
+          else
+          {
+            catapult.stop(coast);
+            catapultToggle = true;
+          }
+        }
+      }
+      // Code for back blocker
+      if (toggle)
+      {
+        backBlocker = true;
+      }
+      else
+      {
+        backBlocker = false;
+      }
+
+      if (Controller1.ButtonX.pressing())
+      {
+        if (!latch)
+        {
+          toggle = !toggle;
+          latch = true;
+        }
+      }
+      else
+      {
+        latch = false;
+      }
+
+      // Code for Side Blocker
+      if (toggle1)
+      {
+        leftBlocker = true;
+        rightBlocker = true;
+      }
+      else
+      {
+        rightBlocker = false;
+        leftBlocker = false;
+      }
+
+      if (Controller1.ButtonL2.pressing())
+      {
+        if (!latch1)
+        {
+          toggle1 = !toggle1;
+          latch1 = true;
+        }
+      }
+      else
+      {
+        latch1 = false;
+      }
+
+      // Intake Code
+
+      if (toggle2)
+      {
+        intake.spin(reverse, 100, percent);
+      }
+      else
+      {
+        intake.stop(coast);
+      }
+
+      if (Controller1.ButtonR1.pressing())
+      {
+        if (!latch2)
+        {
+          toggle2 = !toggle2;
+          latch2 = true;
+        }
+      }
+      else
+      {
+        latch2 = false;
+      }
+
+      if (Controller1.ButtonR2.pressing())
+      {
+        intake.spin(forward, 100, percent);
+      }
+      // Ratchet
+      if (Controller1.ButtonLeft.pressing())
+      {
+
+        ratchet = true;
+      }
+      else
+      {
+        ratchet = false;
+      }
+      // hang
+      if (toggle3)
+      {
+        hang = true;
+      }
+      else
+      {
+        hang = false;
+      }
+
+      if (Controller1.ButtonB.pressing())
+      {
+        if (!latch3)
+        {
+          toggle3 = !toggle3;
+          latch3 = true;
+        }
+      }
+      else
+      {
+        latch3 = false;
+      }
+
+      if (Controller1.ButtonDown.pressing())
+      {
+        skillsAutoShort();
+        catapultPrime = true;
+        toggle1 = true;
+        while (Controller1.ButtonDown.pressing())
+        {
+        }
+      }
+      chassis.control_tank();
+
+      wait(20, msec);
+    }
+  }
+  // Meaghan Skills
+  else if (driver == 4)
+  {
+    Brain.Screen.setFillColor(purple);
+    Brain.Screen.drawRectangle(0, 0, 480, 240);
+    while (1)
+    {
+      // Catapult Prime
+      if (Controller1.ButtonX.pressing())
+      {
+        catapultPrime = true;
+      }
+      // Code for catapult
+      if (catapultPrime == true)
+      {
+        if (Controller1.ButtonR2.pressing())
+        {
+          catapult.spin(forward);
+          wait(500, msec);
+          catapultToggle = false;
+        }
+        else
+        {
+          if (catapultRot.position(degrees) < 57 && catapultToggle == false)
+          {
+            catapult.spin(forward);
+          }
+          else
+          {
+            catapult.stop(coast);
+            catapultToggle = true;
+          }
+        }
+      }
+      // Code for back blocker
+      if (toggle)
+      {
+        backBlocker = true;
+      }
+      else
+      {
+        backBlocker = false;
+      }
+
+      if (Controller1.ButtonL2.pressing())
+      {
+        if (!latch)
+        {
+          toggle = !toggle;
+          latch = true;
+        }
+      }
+      else
+      {
+        latch = false;
+      }
+
+      // Code for Side Blocker
+      if (toggle1)
+      {
+        leftBlocker = true;
+        rightBlocker = true;
+      }
+      else
+      {
+        rightBlocker = false;
+        leftBlocker = false;
+      }
+
+      if (Controller1.ButtonL1.pressing())
+      {
+        if (!latch1)
+        {
+          toggle1 = !toggle1;
+          latch1 = true;
+        }
+      }
+      else
+      {
+        latch1 = false;
+      }
+
+      // Intake Code
+
+      if (toggle2)
+      {
+        intake.spin(reverse, 100, percent);
+      }
+      else
+      {
+        intake.stop(coast);
+      }
+
+      if (Controller1.ButtonR1.pressing())
+      {
+        if (!latch2)
+        {
+          toggle2 = !toggle2;
+          latch2 = true;
+        }
+      }
+      else
+      {
+        latch2 = false;
+      }
+
+      if (Controller1.ButtonY.pressing())
+      {
+        intake.spin(forward, 100, percent);
+      }
+      // Ratchet
+      if (Controller1.ButtonB.pressing())
+      {
+
+        ratchet = true;
+      }
+      else
+      {
+        ratchet = false;
+      }
+      if (Controller1.ButtonDown.pressing())
+      {
+        skillsAutoShort();
+        catapultPrime = true;
+        toggle1 = true;
+        while (Controller1.ButtonDown.pressing())
+        {
+        }
       }
       chassis.control_arcade();
 
