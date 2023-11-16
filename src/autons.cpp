@@ -93,14 +93,55 @@ void leftAutoElimination()
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
   chassis.set_turn_exit_conditions(1, 300, 1000);
   chassis.set_swing_exit_conditions(1, 300, 1000);
-  chassis.drive_distance(-10);
+  intake.spin(reverse, 100, percent);
+  wait(.5, sec);
+  intake.stop(brake);
+  chassis.drive_distance(-8);
+  rightBlocker = (true);
   chassis.right_swing_to_angle(45);
-  chassis.drive_distance(-15);
-  chassis.drive_distance(5);
+  chassis.drive_distance(-20);
+  rightBlocker = (false);
+  chassis.drive_distance(15);
+  chassis.right_swing_to_angle(-110);
+  intake.spin(reverse, 90, percent);
+  chassis.drive_distance(63);
+  wait(1, sec);
+  intake.stop(brake);
+  chassis.turn_to_angle(130 - 180);
+  chassis.drive_distance(10);
+  intake.spin(forward, 90, percent);
+  wait(0.5, sec);
+  chassis.drive_distance(10);
+  intake.stop(brake);
 }
 
 void rightAutoElimination()
 {
+  chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  chassis.set_swing_exit_conditions(1, 300, 1000);
+  rightBlocker = true;
+  intake.spin(reverse, 100, percent);
+  wait(.5, sec);
+  intake.stop(brake);
+  chassis.drive_distance(7.5);
+  chassis.turn_to_angle(-40);
+  chassis.turn_to_angle(-25);
+  rightBlocker = false;
+  chassis.drive_distance(30);
+  chassis.drive_distance(-15);
+  default_constants();
+  chassis.turn_to_angle(-92);
+  intake.spin(reverse, 100, percent);
+  chassis.drive_distance(60);
+  chassis.set_drive_exit_conditions(1.5, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  chassis.set_swing_exit_conditions(1, 300, 1000);
+  chassis.right_swing_to_angle(42);
+  leftBlocker = true;
+  chassis.drive_distance(32);
+  intake.stop(brake);
+  chassis.drive_distance(-10);
 }
 
 void leftAutoNoTouch()
