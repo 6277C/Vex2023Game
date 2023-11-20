@@ -15,11 +15,6 @@ void plowVoid(bool trans)
     }
 }
 
-void catapultVoid()
-{
-    catapult.spin(forward, 100, percent);
-}
-
 void drawGUI()
 {
     Brain.Screen.clearScreen();
