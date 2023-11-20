@@ -17,9 +17,7 @@ void skillsAuto()
   chassis.turn_to_angle(-55);
   leftBlocker = true;
   chassis.drive_distance(5);
-  catapult.spin(forward, 70, percent);
   wait(50, sec);
-  catapult.stop(brake);
   {
   /*
   wait(1, sec);

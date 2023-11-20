@@ -77,12 +77,11 @@ Drive chassis(
 );
 
 // Variables
-bool catapultToggle = false;
+bool launcherToggle = true;
 bool toggle = false;
 bool latch = false;
 bool toggle1 = false;
 bool latch1 = false;
-bool catapultPrime = false;
 bool toggle2 = false;
 bool latch2 = false;
 bool toggle3 = false;
@@ -257,7 +256,6 @@ void autonomous(void)
 void usercontrol(void)
 {
   auto_started = true;
-  catapult.setVelocity(70, percent);
   FR.setStopping(coast);
   MR.setStopping(coast);
   BR.setStopping(coast);
@@ -268,36 +266,31 @@ void usercontrol(void)
   if (driver == 1)
   {
     Brain.Screen.setFillColor(blue);
-    Brain.Screen.drawRectangle(0, 0, 480, 240);
+    Brain.Screen.drawRectangle(0, 0, 240, 120);
     while (1)
     {
-      // Catapult Prime
-      if (Controller1.ButtonUp.pressing())
+      // flywheel code
+      if (Controller1.ButtonL1.pressing() && launcherToggle == true)
       {
-        catapultPrime = true;
-      }
-      // Code for catapult
-      if (catapultPrime == true)
-      {
-        if (Controller1.ButtonL1.pressing())
+        launcherToggle = false;
+        flyWheelP = true;
+        flyWheelM.spin(forward, 100, percent);
+        while (Controller1.ButtonL1.pressing())
         {
-          catapult.spin(forward);
-          wait(500, msec);
-          catapultToggle = false;
-        }
-        else
-        {
-          if (catapultRot.position(degrees) < 57 && catapultToggle == false)
-          {
-            catapult.spin(forward);
-          }
-          else
-          {
-            catapult.stop(coast);
-            catapultToggle = true;
-          }
         }
       }
+      else if (Controller1.ButtonL1.pressing() && launcherToggle == false)
+      {
+        launcherToggle = true;
+        flyWheelP = false;
+        flyWheelM.stop(brake);
+        wait(1, sec);
+        flyWheelM.stop(coast);
+        while (Controller1.ButtonL1.pressing())
+        {
+        }
+      }
+
       // Code for back blocker
       if (toggle)
       {
@@ -373,16 +366,6 @@ void usercontrol(void)
       if (Controller1.ButtonR2.pressing())
       {
         intake.spin(forward, 100, percent);
-      }
-      // Ratchet
-      if (Controller1.ButtonLeft.pressing())
-      {
-
-        ratchet = true;
-      }
-      else
-      {
-        ratchet = false;
       }
       // hang
       if (toggle3)
@@ -415,34 +398,28 @@ void usercontrol(void)
   else if (driver == 2)
   {
     Brain.Screen.setFillColor(purple);
-    Brain.Screen.drawRectangle(0, 0, 480, 240);
+    Brain.Screen.drawRectangle(0, 0, 240, 120);
     while (1)
     {
-      // Catapult Prime
-      if (Controller1.ButtonX.pressing())
+      // flywheel code
+      if (Controller1.ButtonR2.pressing() && launcherToggle == true)
       {
-        catapultPrime = true;
-      }
-      // Code for catapult
-      if (catapultPrime == true)
-      {
-        if (Controller1.ButtonR2.pressing())
+        launcherToggle = false;
+        flyWheelP = true;
+        flyWheelM.spin(forward, 100, percent);
+        while (Controller1.ButtonR2.pressing())
         {
-          catapult.spin(forward);
-          wait(500, msec);
-          catapultToggle = false;
         }
-        else
+      }
+      else if (Controller1.ButtonR2.pressing() && launcherToggle == false)
+      {
+        launcherToggle = true;
+        flyWheelP = false;
+        flyWheelM.stop(brake);
+        wait(1, sec);
+        flyWheelM.stop(coast);
+        while (Controller1.ButtonR2.pressing())
         {
-          if (catapultRot.position(degrees) < 57 && catapultToggle == false)
-          {
-            catapult.spin(forward);
-          }
-          else
-          {
-            catapult.stop(coast);
-            catapultToggle = true;
-          }
         }
       }
       // Code for back blocker
@@ -521,16 +498,6 @@ void usercontrol(void)
       {
         intake.spin(forward, 100, percent);
       }
-      // Ratchet
-      if (Controller1.ButtonB.pressing())
-      {
-
-        ratchet = true;
-      }
-      else
-      {
-        ratchet = false;
-      }
       // hang
       if (toggle3)
       {
@@ -562,34 +529,28 @@ void usercontrol(void)
   else if (driver == 3)
   {
     Brain.Screen.setFillColor(blue);
-    Brain.Screen.drawRectangle(0, 0, 480, 240);
+    Brain.Screen.drawRectangle(0, 0, 240, 120);
     while (1)
     {
-      // Catapult Prime
-      if (Controller1.ButtonUp.pressing())
+      // flywheel code
+      if (Controller1.ButtonL1.pressing() && launcherToggle == true)
       {
-        catapultPrime = true;
-      }
-      // Code for catapult
-      if (catapultPrime == true)
-      {
-        if (Controller1.ButtonL1.pressing())
+        launcherToggle = false;
+        flyWheelP = true;
+        flyWheelM.spin(forward, 100, percent);
+        while (Controller1.ButtonL1.pressing())
         {
-          catapult.spin(forward);
-          wait(500, msec);
-          catapultToggle = false;
         }
-        else
+      }
+      else if (Controller1.ButtonL1.pressing() && launcherToggle == false)
+      {
+        launcherToggle = true;
+        flyWheelP = false;
+        flyWheelM.stop(brake);
+        wait(1, sec);
+        flyWheelM.stop(coast);
+        while (Controller1.ButtonL1.pressing())
         {
-          if (catapultRot.position(degrees) < 57 && catapultToggle == false)
-          {
-            catapult.spin(forward);
-          }
-          else
-          {
-            catapult.stop(coast);
-            catapultToggle = true;
-          }
         }
       }
       // Code for back blocker
@@ -668,16 +629,6 @@ void usercontrol(void)
       {
         intake.spin(forward, 100, percent);
       }
-      // Ratchet
-      if (Controller1.ButtonLeft.pressing())
-      {
-
-        ratchet = true;
-      }
-      else
-      {
-        ratchet = false;
-      }
       // hang
       if (toggle3)
       {
@@ -704,7 +655,6 @@ void usercontrol(void)
       if (Controller1.ButtonDown.pressing())
       {
         skillsAutoShort();
-        catapultPrime = true;
         toggle1 = true;
         while (Controller1.ButtonDown.pressing())
         {
@@ -719,34 +669,28 @@ void usercontrol(void)
   else if (driver == 4)
   {
     Brain.Screen.setFillColor(purple);
-    Brain.Screen.drawRectangle(0, 0, 480, 240);
+    Brain.Screen.drawRectangle(0, 0, 240, 120);
     while (1)
     {
-      // Catapult Prime
-      if (Controller1.ButtonX.pressing())
+      // flywheel code
+      if (Controller1.ButtonR2.pressing() && launcherToggle == true)
       {
-        catapultPrime = true;
-      }
-      // Code for catapult
-      if (catapultPrime == true)
-      {
-        if (Controller1.ButtonR2.pressing())
+        launcherToggle = false;
+        flyWheelP = true;
+        flyWheelM.spin(forward, 100, percent);
+        while (Controller1.ButtonR2.pressing())
         {
-          catapult.spin(forward);
-          wait(500, msec);
-          catapultToggle = false;
         }
-        else
+      }
+      else if (Controller1.ButtonR2.pressing() && launcherToggle == false)
+      {
+        launcherToggle = true;
+        flyWheelP = false;
+        flyWheelM.stop(brake);
+        wait(1, sec);
+        flyWheelM.stop(coast);
+        while (Controller1.ButtonR2.pressing())
         {
-          if (catapultRot.position(degrees) < 57 && catapultToggle == false)
-          {
-            catapult.spin(forward);
-          }
-          else
-          {
-            catapult.stop(coast);
-            catapultToggle = true;
-          }
         }
       }
       // Code for back blocker
@@ -825,20 +769,10 @@ void usercontrol(void)
       {
         intake.spin(forward, 100, percent);
       }
-      // Ratchet
-      if (Controller1.ButtonB.pressing())
-      {
-
-        ratchet = true;
-      }
-      else
-      {
-        ratchet = false;
-      }
+    
       if (Controller1.ButtonDown.pressing())
       {
         skillsAutoShort();
-        catapultPrime = true;
         toggle1 = true;
         while (Controller1.ButtonDown.pressing())
         {

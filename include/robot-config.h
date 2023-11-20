@@ -14,9 +14,9 @@ extern motor intake;
 extern digital_out backBlocker;
 extern digital_out rightBlocker;
 extern digital_out leftBlocker;
-extern digital_out ratchet;
+extern digital_out flyWheelP;
 extern controller Controller1;
-extern motor catapult;
+extern motor flyWheelM;
 extern rotation catapultRot;
 extern digital_out hang;
 
