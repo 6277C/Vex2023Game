@@ -73,9 +73,11 @@ void skillsAutoShort()
     chassis.left_swing_to_angle(45);
     chassis.drive_distance(20);
     chassis.drive_distance(-14);
-    chassis.turn_to_angle(135);
+    chassis.turn_to_angle(155);
     chassis.drive_distance(10);
-    chassis.turn_to_angle(-55);
-    leftBlocker = true;
+    chassis.turn_to_angle(-75);
     chassis.drive_distance(5);
+    flyWheelP = true;
+    flyWheelM.spin(forward, 100, percent);
+
 }

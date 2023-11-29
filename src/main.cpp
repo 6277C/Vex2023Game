@@ -655,7 +655,6 @@ void usercontrol(void)
       if (Controller1.ButtonDown.pressing())
       {
         skillsAutoShort();
-        toggle1 = true;
         while (Controller1.ButtonDown.pressing())
         {
         }
@@ -693,29 +692,6 @@ void usercontrol(void)
         {
         }
       }
-      // Code for back blocker
-      if (toggle)
-      {
-        backBlocker = true;
-      }
-      else
-      {
-        backBlocker = false;
-      }
-
-      if (Controller1.ButtonL2.pressing())
-      {
-        if (!latch)
-        {
-          toggle = !toggle;
-          latch = true;
-        }
-      }
-      else
-      {
-        latch = false;
-      }
-
       // Code for Side Blocker
       if (toggle1)
       {
@@ -728,7 +704,7 @@ void usercontrol(void)
         leftBlocker = false;
       }
 
-      if (Controller1.ButtonL1.pressing())
+      if (Controller1.ButtonL1.pressing() or Controller1.ButtonL2.pressing())
       {
         if (!latch1)
         {
