@@ -255,6 +255,7 @@ void autonomous(void)
 
 void usercontrol(void)
 {
+  Brain.Screen.clearScreen();
   auto_started = true;
   FR.setStopping(coast);
   MR.setStopping(coast);

@@ -49,9 +49,9 @@ void skillsAuto()
   chassis.turn_to_angle(135);
   chassis.drive_distance(12);
   chassis.turn_to_angle(-135);
+  intake.stop();
   chassis.drive_distance(20);
   chassis.drive_distance(-20);
-  intake.stop();
 }
 
 void leftAutoElimination()
