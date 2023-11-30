@@ -3,8 +3,8 @@
 void skillsAuto()
 {
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
-  chassis.set_turn_exit_conditions(1, 300, 1000);
   chassis.set_swing_exit_conditions(1, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
   intake.spin(reverse, 100, percent);
   wait(.5, sec);
   intake.stop(brake);
@@ -12,49 +12,46 @@ void skillsAuto()
   chassis.left_swing_to_angle(45);
   chassis.drive_distance(20);
   chassis.drive_distance(-14);
-  chassis.turn_to_angle(135);
+  chassis.turn_to_angle(155);
   chassis.drive_distance(10);
-  chassis.turn_to_angle(-55);
-  leftBlocker = true;
-  chassis.drive_distance(5);
-  wait(50, sec);
-  {
-  /*
-  wait(1, sec);
-  leftBlocker = false;
-  chassis.drive_distance(-5);
-  chassis.turn_to_angle(0);
-  chassis.drive_distance(-15);
-  chassis.left_swing_to_angle(-46);
-  ///// drive under bar
-  chassis.set_drive_exit_conditions(1.5, 300, 3000);
-  chassis.set_turn_exit_conditions(1, 300, 3000);
-  chassis.set_swing_exit_conditions(1, 300, 3000);
-  chassis.drive_distance(-80);
-
+  chassis.turn_to_angle(-75);
+  chassis.drive_distance(7);
+  flyWheelP = true;
+  flyWheelM.spin(forward, 100, percent);
+  wait(20,sec);
+  flyWheelP = false;
+  flyWheelM.stop(brake);
+  chassis.turn_to_angle(180);
+  chassis.drive_distance(13);
+  chassis.turn_to_angle(135);
+  chassis.set_drive_exit_conditions(1.5, 300, 5000);
+  chassis.drive_distance(90);
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
-  chassis.set_turn_exit_conditions(1, 300, 1000);
-  chassis.set_swing_exit_conditions(1, 300, 1000);
-  chassis.left_swing_to_angle(-47);
-  chassis.set_drive_exit_conditions(1.5, 300, 3000);
-  chassis.set_turn_exit_conditions(1, 300, 3000);
-  chassis.set_swing_exit_conditions(1, 300, 3000);
-
-  chassis.set_drive_exit_conditions(1.5, 300, 1000);
-  chassis.set_turn_exit_conditions(1, 300, 1000);
-  chassis.set_swing_exit_conditions(1, 300, 1000);
-  ///////////// rest of code
-  chassis.left_swing_to_angle(0);
-  leftBlocker = true;
+  chassis.turn_to_angle(90);
+  chassis.drive_distance(17);
+  chassis.turn_to_angle(45);
+  chassis.drive_distance(20);
+  chassis.drive_distance(-20);
+  chassis.turn_to_angle(-15);
   rightBlocker = true;
-  chassis.left_swing_to_angle(90);
-  chassis.drive_distance(16);
-  chassis.right_swing_to_angle(48);
+  leftBlocker = true;
+  chassis.drive_distance(40);
+  chassis.turn_to_angle(45);
+  chassis.drive_distance(30);
+  chassis.turn_to_angle(135);
+  chassis.drive_distance(30);
+  rightBlocker = false;
+  leftBlocker = false;
+  chassis.drive_distance(-30);
+  chassis.turn_to_angle(75);
+  intake.spin(reverse, 100, percent);
+  chassis.drive_distance(60);
+  chassis.turn_to_angle(135);
+  chassis.drive_distance(12);
+  chassis.turn_to_angle(-135);
   chassis.drive_distance(20);
   chassis.drive_distance(-20);
-  chassis.drive_distance(20);
-  chassis.drive_distance(-20);
-  */}
+  intake.stop();
 }
 
 void leftAutoElimination()
@@ -183,7 +180,7 @@ void rightAutoTouch()
   intake.stop(brake);
   chassis.drive_distance(7.5);
   chassis.turn_to_angle(-40);
-   rightBlocker = false;
+  rightBlocker = false;
   chassis.turn_to_angle(-25);
   chassis.drive_distance(30);
   chassis.turn_to_angle(180);
