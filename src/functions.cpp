@@ -52,12 +52,12 @@ void drawAutoButtons()
     Brain.Screen.drawRectangle(322, 10, 146, 105);
     Brain.Screen.drawRectangle(322, 125, 146, 105);
     Brain.Screen.setFont(monoXS);
-    Brain.Screen.printAt(20, 60, "Right Auto NO touch");
-    Brain.Screen.printAt(20, 175, "Left Auto NO touch");
-    Brain.Screen.printAt(176, 60, "Right Auto touch");
-    Brain.Screen.printAt(176, 175, "Left Auto touch");
-    Brain.Screen.printAt(332, 60, "Right Auto Elimination");
-    Brain.Screen.printAt(332, 175, "Left Auto Elimination");
+    Brain.Screen.printAt(20, 60, "Far Auto NO touch");
+    Brain.Screen.printAt(20, 175, "Close Auto NO touch");
+    Brain.Screen.printAt(176, 60, "Far Auto touch");
+    Brain.Screen.printAt(176, 175, "Close Auto touch");
+    Brain.Screen.printAt(332, 60, "Far Auto Elimination");
+    Brain.Screen.printAt(332, 175, "Close Auto Elimination");
     Brain.Screen.setFont(propXL);
 }
 
@@ -75,9 +75,9 @@ void skillsAutoShort()
     chassis.drive_distance(-14);
     chassis.turn_to_angle(155);
     chassis.drive_distance(10);
-    chassis.turn_to_angle(-70);
+    chassis.turn_to_angle(-80);
     chassis.drive_distance(5);
     flyWheelP = true;
-    flyWheelM.spin(forward, 100, percent);
+    flyWheelM.spin(forward, 90, percent);
 
 }

@@ -180,32 +180,32 @@ void pre_auton(void)
       switch (current_auton_selection)
       {
       case 0:
-        Brain.Screen.printAt(10, 120, "Right Auto WITHOUT touch");
+        Brain.Screen.printAt(10, 120, "Far Auto WITHOUT touch");
         autoLoopStop = true;
         auto_started = true;
         break;
       case 1:
-        Brain.Screen.printAt(10, 120, "Left Auto WITHOUT touch");
+        Brain.Screen.printAt(10, 120, "Close Auto WITHOUT touch");
         autoLoopStop = true;
         auto_started = true;
         break;
       case 2:
-        Brain.Screen.printAt(10, 120, "Right Auto WITH touch");
+        Brain.Screen.printAt(10, 120, "Far Auto WITH touch");
         autoLoopStop = true;
         auto_started = true;
         break;
       case 3:
-        Brain.Screen.printAt(10, 120, "Left Auto WITH touch");
+        Brain.Screen.printAt(10, 120, "CLose Auto WITH touch");
         autoLoopStop = true;
         auto_started = true;
         break;
       case 4:
-        Brain.Screen.printAt(10, 120, "Right Auto Elimination");
+        Brain.Screen.printAt(10, 120, "Far Auto Elimination");
         autoLoopStop = true;
         auto_started = true;
         break;
       case 5:
-        Brain.Screen.printAt(10, 120, "Left Auto Elimination");
+        Brain.Screen.printAt(10, 120, "Close Auto Elimination");
         autoLoopStop = true;
         auto_started = true;
         break;
