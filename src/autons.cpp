@@ -19,7 +19,7 @@ void skillsAuto()
   leftBlocker = true;
   flyWheelP = true;
   flyWheelM.spin(forward, 100, percent);
-  wait(28,sec);
+  wait(26,sec);
   flyWheelP = false;
   leftBlocker = false;
   flyWheelM.stop(brake);
@@ -30,8 +30,10 @@ void skillsAuto()
   chassis.drive_distance(90);
   chassis.set_drive_exit_conditions(1.5, 300, 1000);
   chassis.turn_to_angle(90);
-  chassis.drive_distance(17);
+  chassis.drive_distance(19);
   chassis.turn_to_angle(45);
+  chassis.drive_distance(20);
+  chassis.drive_distance(-20);
   chassis.drive_distance(20);
   chassis.drive_distance(-20);
   chassis.turn_to_angle(-15);
@@ -49,9 +51,11 @@ void skillsAuto()
   intake.spin(reverse, 100, percent);
   chassis.drive_distance(60);
   chassis.turn_to_angle(135);
-  chassis.drive_distance(18);
+  chassis.drive_distance(22);
   chassis.turn_to_angle(-135);
   intake.stop();
+  chassis.drive_distance(20);
+  chassis.drive_distance(-20);
   chassis.drive_distance(20);
   chassis.drive_distance(-20);
 }
