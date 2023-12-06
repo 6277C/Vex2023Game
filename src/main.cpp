@@ -656,6 +656,7 @@ void usercontrol(void)
       if (Controller1.ButtonDown.pressing())
       {
         skillsAutoShort();
+        toggle1 = true;
         while (Controller1.ButtonDown.pressing())
         {
         }
@@ -750,7 +751,7 @@ void usercontrol(void)
       if (Controller1.ButtonDown.pressing())
       {
         skillsAutoShort();
-        toggle1 = true;
+        toggle1=true;
         while (Controller1.ButtonDown.pressing())
         {
         }
@@ -762,9 +763,6 @@ void usercontrol(void)
   }
 }
 
-//
-// Main will set up the competition functions and callbacks.
-//
 int main()
 {
   // Set up callbacks for autonomous and driver control periods.
