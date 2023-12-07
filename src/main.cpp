@@ -344,11 +344,13 @@ void usercontrol(void)
 
       if (toggle2)
       {
-        intake.spin(reverse, 100, percent);
+        intakeL.spin(reverse, 100, percent);
+        intakeR.spin(reverse, 100, percent);
       }
       else
       {
-        intake.stop(coast);
+        intakeL.stop(brake);
+        intakeR.stop(brake);
       }
 
       if (Controller1.ButtonR1.pressing())
@@ -366,7 +368,8 @@ void usercontrol(void)
 
       if (Controller1.ButtonR2.pressing())
       {
-        intake.spin(forward, 100, percent);
+        intakeL.spin(forward, 100, percent);
+        intakeR.spin(forward, 100, percent);
       }
       // hang
       if (toggle3)
@@ -475,11 +478,13 @@ void usercontrol(void)
 
       if (toggle2)
       {
-        intake.spin(reverse, 100, percent);
+        intakeR.spin(reverse, 100, percent);
+        intakeL.spin(reverse, 100, percent);
       }
       else
       {
-        intake.stop(coast);
+        intakeR.stop(brake);
+        intakeL.stop(brake);
       }
 
       if (Controller1.ButtonR1.pressing())
@@ -497,7 +502,8 @@ void usercontrol(void)
 
       if (Controller1.ButtonY.pressing())
       {
-        intake.spin(forward, 100, percent);
+        intakeR.spin(forward, 100, percent);
+        intakeL.spin(forward, 100, percent);
       }
       // hang
       if (toggle3)
@@ -606,11 +612,13 @@ void usercontrol(void)
 
       if (toggle2)
       {
-        intake.spin(reverse, 100, percent);
+        intakeR.spin(reverse, 100, percent);
+        intakeL.spin(reverse, 100, percent);
       }
       else
       {
-        intake.stop(coast);
+        intakeL.stop(brake);
+        intakeR.stop(brake);
       }
 
       if (Controller1.ButtonR1.pressing())
@@ -628,7 +636,8 @@ void usercontrol(void)
 
       if (Controller1.ButtonR2.pressing())
       {
-        intake.spin(forward, 100, percent);
+        intakeL.spin(forward, 100, percent);
+        intakeR.spin(forward, 100, percent);
       }
       // hang
       if (toggle3)
@@ -723,11 +732,13 @@ void usercontrol(void)
 
       if (toggle2)
       {
-        intake.spin(reverse, 100, percent);
+        intakeL.spin(reverse, 100, percent);
+        intakeR.spin(reverse, 100, percent);
       }
       else
       {
-        intake.stop(coast);
+        intakeR.stop(brake);
+        intakeL.stop(brake);
       }
 
       if (Controller1.ButtonR1.pressing())
@@ -745,7 +756,8 @@ void usercontrol(void)
 
       if (Controller1.ButtonY.pressing())
       {
-        intake.spin(forward, 100, percent);
+        intakeL.spin(forward, 100, percent);
+        intakeR.spin(forward, 100, percent);
       }
     
       if (Controller1.ButtonDown.pressing())

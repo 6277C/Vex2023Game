@@ -10,14 +10,14 @@ extern motor BR;
 extern motor FL;
 extern motor ML;
 extern motor BL;
-extern motor intake;
+extern motor intakeR;
+extern motor intakeL;
 extern digital_out backBlocker;
 extern digital_out rightBlocker;
 extern digital_out leftBlocker;
 extern digital_out flyWheelP;
 extern controller Controller1;
 extern motor flyWheelM;
-extern rotation catapultRot;
 extern digital_out hang;
 
 /**

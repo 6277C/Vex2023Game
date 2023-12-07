@@ -22,8 +22,8 @@ digital_out hang = digital_out(Brain.ThreeWirePort.E);
 digital_out leftBlocker = digital_out(Brain.ThreeWirePort.D);
 controller Controller1 = controller(primary);
 motor flyWheelM = motor(PORT8, ratio36_1, false);
-rotation catapultRot = rotation(PORT2, false);
-motor intake = motor(PORT17, ratio6_1, false);
+motor intakeR = motor(PORT17, ratio18_1, true);
+motor intakeL = motor(PORT14, ratio18_1, false);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

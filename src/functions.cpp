@@ -66,9 +66,11 @@ void skillsAutoShort()
     chassis.set_drive_exit_conditions(1.5, 300, 1000);
     chassis.set_swing_exit_conditions(1, 300, 1000);
     chassis.set_turn_exit_conditions(1, 300, 1000);
-    intake.spin(reverse, 100, percent);
+    intakeL.spin(reverse, 100, percent);
+    intakeR.spin(reverse,100,percent);
     wait(.5, sec);
-    intake.stop(brake);
+    intakeL.stop(brake);
+    intakeR.stop(brake);
     chassis.drive_distance(13);
     chassis.left_swing_to_angle(45);
     chassis.drive_distance(20);
