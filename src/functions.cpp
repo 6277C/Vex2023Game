@@ -1,20 +1,5 @@
 #include "vex.h"
 
-// make bool true for plows to go out and make bool false for plows to pull in
-void plowVoid(bool trans)
-{
-    if (trans == true)
-    {
-        leftBlocker = true;
-        rightBlocker = true;
-    }
-    else
-    {
-        leftBlocker = false;
-        rightBlocker = false;
-    }
-}
-
 void drawGUI()
 {
     Brain.Screen.clearScreen();
@@ -64,23 +49,22 @@ void drawAutoButtons()
 void skillsAutoShort()
 {
     chassis.set_drive_exit_conditions(1.5, 300, 1000);
-    chassis.set_swing_exit_conditions(1, 300, 1000);
-    chassis.set_turn_exit_conditions(1, 300, 1000);
-    intakeL.spin(reverse, 100, percent);
-    intakeR.spin(reverse,100,percent);
-    wait(.5, sec);
-    intakeL.stop(brake);
-    intakeR.stop(brake);
-    chassis.drive_distance(13);
-    chassis.left_swing_to_angle(45);
-    chassis.drive_distance(20);
-    chassis.drive_distance(-14);
-    chassis.turn_to_angle(155);
-    chassis.drive_distance(10);
-    chassis.turn_to_angle(-70);
-    chassis.drive_distance(6);
-    leftBlocker = true;
-    flyWheelP = true;
-    flyWheelM.spin(forward, 80, percent);
-
+  chassis.set_swing_exit_conditions(1, 300, 1000);
+  chassis.set_turn_exit_conditions(1, 300, 1000);
+  intakeL.spin(reverse, 100, percent);
+  intakeR.spin(reverse, 100, percent);
+  wait(.5, sec);
+  intakeL.stop(brake);
+  intakeR.stop(brake);
+  chassis.drive_distance(6);
+  chassis.left_swing_to_angle(45);
+  chassis.drive_distance(10);
+  chassis.drive_distance(-7);
+  chassis.turn_to_angle(155);
+  chassis.drive_distance(5);
+  chassis.turn_to_angle(-70);
+  chassis.drive_distance(3);
+  leftBlocker = true;
+  flyWheelP = true;
+  flyWheelM.spin(forward, 85, percent);
 }

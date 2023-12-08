@@ -3,7 +3,7 @@ using namespace vex;
 extern brain Brain;
 
 // VEXcode devices
-extern inertial Inertial10;
+extern inertial Inertial;
 extern motor FR;
 extern motor MR;
 extern motor BR;

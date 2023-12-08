@@ -28,7 +28,7 @@ Drive chassis(
     motor_group(FR, MR, BR),
 
     // Inertial Sensor
-    PORT16,
+    PORT11,
 
     // Input your wheel diameter. (4" omnis are actually closer to 4.125"):
     3.25,
@@ -96,7 +96,6 @@ bool autoLoopStop = false;
 
 void pre_auton(void)
 {
-
   vexcodeInit();
   default_constants();
   drawGUI();
